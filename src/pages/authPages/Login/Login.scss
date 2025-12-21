@@ -1,0 +1,117 @@
+@use "../../../assets/styles/base/variables" as vars;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.login-page {
+  background-color: vars.$white-color;
+  max-width: 420px;
+  border: 1px solid #f3f1fc;
+  box-shadow: -4px 8px 24px 0px #2c3f5805;
+  padding: 40px 32px;
+  border-radius: 20px;
+  margin: auto;
+
+  @include mixins.respond-to("mobile") {
+    padding: 25px 16px;
+  }
+
+  &__container {
+    .login__form {
+      margin-top: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .route {
+      display: none;
+      @include mixins.respond-to("mobile") {
+        display: block;
+      }
+    }
+  }
+
+  .login-page__container h4,
+  p {
+    text-align: center;
+    margin-bottom: 16px;
+    margin: 0;
+  }
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .login__form .form-group,
+  .login__form > .mb-1,
+  .login__form > .text-right {
+    margin: 0;
+  }
+  .login__form .text-end {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: -20px;
+  }
+ .google-signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;              
+  img.google-signin__icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+}
+
+.login-page__container > .signup-link {
+  margin-top: 15px;
+}
+  &__or-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    max-width: 420px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    @include mixins.respond-to("mobile") {
+      width: 100%;
+      padding: 5px 3px;
+    }
+    @include mixins.respond-to("tablet") {
+      width: 100%;
+      padding: 5px 3px;
+    }
+
+    span {
+      flex: 1;
+      color: #888;
+      position: relative;
+      font-weight: 400;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 46%;
+        height: 1px;
+        background-color: #ccc;
+      }
+
+      &::before {
+        left: 0;
+        transform: translateY(50%);
+      }
+
+      &::after {
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

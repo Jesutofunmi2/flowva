@@ -1,0 +1,70 @@
+@use "./variables" as vars;
+@use "./mixins" as mixins;
+
+* {
+  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+//set body properties
+body {
+  margin: auto;
+  padding: 0px;
+  max-width: 2000px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+hr {
+  margin: 8px 0;
+  background: vars.$border-color;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+span {
+  line-height: 1.1;
+}
+
+input {
+  @include mixins.respond-to("tablet") {
+    font-size: 16px !important;
+  }
+}
+
+// add custom scrollbars
+* {
+  &::-webkit-scrollbar {
+    width: 0.4em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f3f1fc;
+    padding-left: 0.1em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #a5a5a5;
+  }
+
+  svg:not(:root) {
+    flex-shrink: 0;
+  }
+}
+
+svg:not(:root) {
+  flex-shrink: 0;
+}

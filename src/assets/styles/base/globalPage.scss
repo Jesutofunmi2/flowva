@@ -1,0 +1,19 @@
+.selectPropMid {
+  .custom-dropdown {
+    &__select {
+      &__control {
+        min-height: 40px !important;
+        background: white;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

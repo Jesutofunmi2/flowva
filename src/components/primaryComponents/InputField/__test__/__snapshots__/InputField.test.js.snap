@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="input-field"
+  htmlFor=""
+  style={Object {}}
+>
+  <label
+    className=""
+    data-testid="label"
+    htmlFor=""
+    style={Object {}}
+  >
+    <span>
+      email
+    </span>
+  </label>
+  <div
+    className="     "
+  >
+    <input
+      className="email false"
+      data-testid="input"
+      disabled={false}
+      id=""
+      name=""
+      onChange={[Function]}
+      onKeyUp={[Function]}
+      type="text"
+    />
+  </div>
+  <p
+    className="error-message text-danger "
+    data-testid="error-message"
+  />
+</div>
+`;

@@ -1,0 +1,69 @@
+import { pathConstants } from "./pathContants";
+
+import { Navigate, Outlet } from "react-router-dom";
+import Error404 from "../pages/ErrorPages/Error404";
+import AuthPages from "../pages/authPages";
+import AppPages from "../pages/appPages";
+
+import {
+  AppGuard,
+  OnboardingGuard,
+} from "../components/common";
+
+const useGetRoutes = () => {
+
+  const routes = [
+    {
+      path: "/",
+      element: <Navigate to={pathConstants.LOGIN} replace />,
+    },
+
+    // auth
+    {
+      element: <OnboardingGuard />,
+      children: [
+        {
+          path: pathConstants.LOGIN,
+          element: <AuthPages.Login />,
+        },
+        {
+          path: pathConstants.SIGNUP,
+          element: <AuthPages.Signup />,
+        },
+        {
+          path: pathConstants.RESET_PASSWORD,
+          element: <AuthPages.ForgetPassword />,
+        },
+        {
+          path: pathConstants.LOGIN_OTP_VERIFICATION,
+          element: <AuthPages.LoginOtpVerification />,
+        },
+        {
+          path: pathConstants.AUTH_CALLBACK,
+          element: <AuthPages.AuthCallback />
+        },
+        {
+          path: pathConstants.RESET_PASSWORD_CALLBACK,
+          element: <AuthPages.ResetPasswordCallback />
+        }
+      ],
+    },
+
+    // app
+    {
+      element: <AppGuard><Outlet /></AppGuard>,
+      children: [
+        {
+          path: pathConstants.DASHBOARD,
+          element: <AppPages.Dashboard />,
+        },
+      ],
+    },
+
+    { path: "*", element: <Error404 /> },
+  ];
+
+  return routes;
+};
+
+export default useGetRoutes;

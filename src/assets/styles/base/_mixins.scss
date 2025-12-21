@@ -1,0 +1,100 @@
+@use "./variables" as vars;
+@use "sass:map";
+
+$breakpoints: (
+  "small-mobile": 385px,
+  "mobile": 485px,
+  "tablet": 650px,
+  "big-tablet": 850px,
+  "small": 1000px,
+  "large": 1199px,
+  "mid-large": 1350px,
+  "xtra-large": 1536px,
+);
+
+@mixin respond-to($breakpoint) {
+  @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin dropdown(
+  $width: 100%,
+  $background: $white-color,
+  $padding: 25px,
+  $right: 0,
+  $top: 55px
+) {
+  background: $background;
+  border-radius: 8px;
+  width: $width;
+  padding: $padding;
+  position: absolute;
+  right: $right;
+  top: $top;
+  z-index: 5;
+  box-shadow: 1px 1px 3px 2px #ddd;
+}
+
+@mixin flex {
+  display: flex;
+}
+@mixin flex-item-center {
+  @include flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-row($gap: 0) {
+  @include flex;
+  flex-direction: row;
+  gap: $gap;
+}
+@mixin flex-col($gap: 0) {
+  @include flex;
+  flex-direction: column;
+  gap: $gap;
+}
+@mixin justify-content-between-col($gap: 0) {
+  @include flex-col;
+  justify-content: space-between;
+  gap: $gap;
+}
+@mixin justify-content-between-row($gap: 0) {
+  @include flex-row;
+  justify-content: space-between;
+  gap: $gap;
+}
+@mixin justify-content-end-row($gap: 0) {
+  @include flex-row;
+  justify-content: flex-end;
+  gap: $gap;
+}
+@mixin align-items-center-row($gap: 0) {
+  @include flex-row;
+  align-items: center;
+  gap: $gap;
+}
+@mixin align-items-center-col($gap: 0) {
+  @include flex-col;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin textBackground {
+  padding: 1px 7px;
+  background: #f3f3f3;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+@mixin routedModal__header {
+  @include justify-content-between-row($gap: 10px);
+  align-items: center;
+  min-height: 70px;
+  background: $white-color;
+  border-bottom: $light-border;
+  padding: 10px 20px;
+  z-index: 2;
+  position: sticky;
+  top: 0;
+}

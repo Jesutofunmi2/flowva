@@ -1,0 +1,155 @@
+@use "../../../assets/styles/base/variables" as vars;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "sass:color" as color;
+
+.btn {
+  height: 48px;
+  font-weight: normal;
+  padding: 0px 25px;
+   border-radius: 5px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  outline: none !important;
+  box-shadow: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+  flex-shrink: 1;
+  @include mixins.respond-to("tablet") {
+    height: 42px;
+    padding: 0 17px;
+  }
+  &.cover {
+    width: 100%;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.btn--primary {
+  background-color: vars.$purple-color;
+  color: vars.$white-color;
+  border-radius: 25px;
+  border: none !important;
+  font-size: 16px;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: color.adjust(#766df4, $lightness: -6%);
+  }
+  &:hover {
+       background-color: color.adjust(#6D28D9, $lightness: -1%);
+    }
+}
+
+.btn--success {
+  background-color: vars.$success-color;
+  color: vars.$white-color;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: color.adjust(vars.$success-color, $lightness: 6%);
+  }
+}
+
+.btn--yellow {
+  background-color: vars.$dark-yellow;
+  color: vars.$white-color;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: color.adjust(vars.$dark-yellow, $lightness: 6%);
+  }
+}
+.btn--orange {
+  background-color: vars.$orange-color;
+  color: vars.$white-color;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: color.adjust(vars.$orange-color, $lightness: 6%);
+  }
+}
+
+.btn--outline {
+  background-color: vars.$white-color;
+  color: vars.$dark-color;
+  border: 0.001px solid #EDE9FE;
+  font-size: 12px;
+  &:hover {
+       background-color: #F5F3FF;
+    }
+}
+
+.btn--outline-red {
+  background-color: vars.$white-color;
+  color: vars.$danger-color;
+  border: 1px solid vars.$danger-color;
+}
+
+.btn--outline-green {
+  background-color: vars.$white-color;
+  color: vars.$flowva-light-green;
+  border: 1px solid vars.$flowva-light-green;
+}
+
+.btn--outline-gray {
+  background-color: vars.$white-color;
+  color: vars.$gray-color;
+  border: 1px solid vars.$gray-color;
+}
+
+.btn--danger {
+  background: red;
+  color: vars.$white-color;
+
+  &:disabled {
+    background: rgb(255, 122, 122);
+  }
+}
+
+.btn--disabled {
+  background: #c5c5c5;
+  color: vars.$white-color;
+
+  &:disabled {
+    cursor: not-allowed;
+    user-select: none;
+  }
+}
+
+.btn--yellow {
+  background-color: vars.$dark-yellow;
+  color: vars.$white-color;
+}
+
+.btn--outline-yellow {
+  background-color: vars.$white-color;
+  color: vars.$dark-yellow;
+  border: 1px solid vars.$dark-yellow;
+}
+
+.btn--green {
+  background-color: vars.$flowva-green;
+  color: vars.$white-color;
+}
+
+.btn--light-green {
+  background: vars.$light-green;
+  border: 1px solid vars.$flowva-light-green;
+}
+
+.btn--light-danger {
+  background: #fe9a79;
+  border: 1px solid vars.$danger-color;
+}
+
+.smallBtn {
+  height: 32px;
+  padding: 0 15px;
+  font-size: 12px;
+}

@@ -1,0 +1,88 @@
+@use "../../../assets/styles/base/variables" as vars;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.tooltipCover {
+  display: block;
+
+  &:hover {
+    .tooltipTextTop,
+    .tooltipTextRight,
+    .tooltipTextLeft,
+    .tooltipTextBottom {
+      display: block;
+    }
+  }
+
+  .tooltipTextTop,
+  .tooltipTextRight,
+  .tooltipTextLeft,
+  .tooltipTextBottom {
+    width: max-content;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: vars.$dark-purple-color;
+    color: vars.$white-color;
+    font-size: 14px;
+    display: none;
+    z-index: 4;
+    position: absolute;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: vars.$dark-purple-color;
+      bottom: -5px;
+      transform: rotate(45deg);
+    }
+  }
+
+  .tooltipTextTop {
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    &::after {
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+
+  .tooltipTextRight {
+    top: -50%;
+    left: calc(100% + 10px);
+    transform: translateY(-30%);
+
+    &::after {
+      top: 50%;
+      left: -5px;
+      margin-top: -5px;
+    }
+  }
+
+  .tooltipTextLeft {
+    top: 50%;
+    right: calc(100% + 10px);
+    transform: translateY(-30%);
+
+    &::after {
+      top: 50%;
+      right: -5px;
+      margin-top: -5px;
+    }
+  }
+
+  .tooltipTextBottom {
+    left: 50%;
+    transform: translate(-50%, 70%);
+
+    &::after {
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: calc(100% - 5px);
+    }
+  }
+}

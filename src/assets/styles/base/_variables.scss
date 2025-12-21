@@ -1,0 +1,270 @@
+// Edit this section an set color variable with occurdance with the design
+$main--bg: #e5e5e5;
+$secondary-bg: #e4dafc;
+$tertiary-bg: #f8f8f8;
+$purple-color: #9013fe;
+$dark-purple-color: #6D28D9;
+$white-color: #ffffff;
+$dark-color: #15112d;
+$gray-color: #9091b3;
+$light-gray-color: #696677;
+$danger-color: #dc3545;
+$flowva-purple: #f2edfe;
+$dark-yellow: #f7ad3c;
+$success-color: #19ae57;
+$orange-color: #fd561f;
+$flowva-green: #19ae57;
+$flowva-light-green: #75ce9a;
+$flowva-get-started: #f7f6fd;
+$light-ash: #eeeef0;
+$flowva-light-danger: #feeaea;
+$light-purple: #f3f1fc;
+$deep-yellow: #ffddd2;
+$light-green: #d1efdd;
+$light-cancel: #e8e8e8;
+$light-green-flowva: #e8f7ee;
+$light-danger: #ffeee9;
+$light-yellow: #fff8e5;
+$ash-color: #efefef;
+$subcription-plain: #ffeee9;
+$card-plain: #f1f1f1;
+$purple-pressed-color: #5a20ef;
+$smallest-text-size: 12px;
+$border-color: #9013fe;
+$input-border-color: #EDE9FE;
+
+.white {
+  background: $white-color !important;
+  &--text {
+    color: $white-color !important;
+  }
+}
+
+.light-purple {
+  background: $light-purple;
+}
+
+.light-yellow {
+  background: $light-yellow;
+}
+
+.purple {
+  background: $purple-color !important;
+  &--text {
+    color: $purple-color !important;
+  }
+  &--border {
+    border: 1px solid #6D28D9;
+  }
+}
+.purple--border {
+  border: 1px solid $purple-color !important;
+}
+
+.gray {
+  background: $light-gray-color;
+  &--text {
+    color: $light-gray-color;
+  }
+  &--squared {
+    color: #15112d;
+    background: #cbcbcb;
+    display: inline-block;
+    padding: 5px 6px;
+    border-radius: 8px;
+    font-size: 10px !important;
+  }
+  &--primary {
+    color: $success-color;
+    background: #e5fff0;
+    display: inline-block;
+    padding: 5px 6px;
+    border-radius: 8px;
+    font-size: 10px !important;
+  }
+}
+.dark {
+  background: $dark-color;
+  &--text {
+    color: $dark-color;
+  }
+}
+
+.error {
+  background: $danger-color !important;
+  &--text {
+    color: $danger-color !important;
+  }
+  &--squared {
+    color: $danger-color;
+    background: #feeaea;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px !important;
+  }
+}
+
+.orange {
+  background: $orange-color;
+  &--text {
+    color: $orange-color;
+  }
+  &--subscription {
+    background: $subcription-plain;
+  }
+  &--border {
+    border: 1px solid $orange-color !important;
+  }
+}
+
+.yellow {
+  background: $dark-yellow;
+  &--text {
+    color: $dark-yellow;
+  }
+}
+
+.ash {
+  background: $ash-color;
+  &--text {
+    color: $ash-color;
+  }
+}
+
+.card-plain {
+  background-color: $card-plain !important;
+}
+
+.success {
+  background: $success-color;
+  &--text {
+    color: $success-color;
+  }
+  &--squared {
+    color: $success-color;
+    background: #e5fff0;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px !important;
+  }
+  &--rounded {
+    color: $success-color;
+    background: #e5fff0;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 14px !important;
+  }
+  &--kitchenReady {
+    font-size: 40px;
+    font-weight: bold;
+    color: #19ae57;
+    background: #e5fff0;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  &--squaredRadius {
+    color: $success-color;
+    background: #e5fff0;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+  }
+}
+
+.pending {
+  background: $dark-yellow;
+  &--text {
+    color: $dark-yellow;
+  }
+  &--squared {
+    color: $dark-yellow;
+    background: #fff8e5;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px !important;
+  }
+  &--rounded {
+    padding: 7px 8px;
+    color: $dark-yellow;
+    background: #fff8e5;
+    display: inline-block;
+    border-radius: 12px;
+    font-size: 14px !important;
+  }
+  &--kitchenInprogress {
+    font-size: 40px;
+    font-weight: bold;
+    color: #f7ad3c;
+    background: #fef7eb;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 5px;
+    text-align: center;
+  }
+}
+
+.comingSoon,
+.dark-purple {
+  background: $dark-purple-color !important;
+  &--text {
+    color: $white-color !important;
+  }
+  &--rounded {
+    color: $white-color !important;
+    background: $dark-purple-color !important;
+    display: inline-block;
+    padding: 13px 16px;
+    border-radius: 5px;
+  }
+  &--connect {
+    color: $flowva-green !important;
+    background: #e8f7ee !important;
+    display: inline-block;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+  &--app {
+    font-size: 10px;
+    font-weight: bold;
+    color: #f7ad3c;
+    background: #fef7eb;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  &--disconnect {
+    color: $orange-color !important;
+    background: $subcription-plain !important;
+    display: inline-block;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+}
+.warning {
+  background: #fef7eb;
+  border-radius: 12px;
+}
+
+.light-purple {
+  background: #6D28D9;
+
+  &--text {
+    color: #6D28D9;
+  }
+}
+
+$shadow: 0px 4px 20px rgba(135, 126, 144, 0.15);
+$purple-border: 1px solid #6D28D9;
+$light-border: 1px solid $border-color;
+$input-border: 0.5px solid $border-color;
