@@ -1,4 +1,4 @@
-import Login from "./Login/Login";
+import Login from "./Login";
 import Signup from "./Signup";
 import ForgetPassword from "./ForgetPassword";
 import AuthCallback from "./AuthCallback";

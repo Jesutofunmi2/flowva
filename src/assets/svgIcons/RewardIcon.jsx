@@ -1,11 +1,11 @@
-export const RewardIcon = () => {
+const RewardIcon = () => {
   return (
     <svg
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="gem"
-      class="svg-inline--fa fa-gem "
+      className="svg-inline--fa fa-gem "
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
@@ -17,3 +17,5 @@ export const RewardIcon = () => {
     </svg>
   );
 };
+
+export default RewardIcon;

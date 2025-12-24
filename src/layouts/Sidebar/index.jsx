@@ -25,6 +25,7 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
       >
         <div className="sidebar__top">
           <img src={Images.logo} alt="FlowvaHub" className="sidebar__logo" />
+          
         </div>
 
         <nav className="sidebar__nav">
@@ -37,6 +38,7 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
                 `sidebar__item ${isActive ? "active" : ""}`
               }
             >
+          
               {({ isActive }) => (
                 <>
                   <span className="sidebar__icon">

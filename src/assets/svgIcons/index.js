@@ -1,12 +1,48 @@
-export * from "./ExclamationCirlce";
-export * from "./HomeIcon";
-export * from "./SettingIcon";
-export * from "./CloseIcon";
-export * from "./HamburgerIcon";
-export * from "./RewardIcon";
-export * from "./LibraryIcon";
-export * from "./TechStackIcon";
-export * from "./SubscriptionIcon";
-export * from "./DiscoverIcon";
-export * from "./BellIcon";
-export * from "./ArrowRight";
+
+import ExclamationCirlce from "./ExclamationCirlce";
+import HomeIcon from "./HomeIcon";
+import SettingIcon from "./SettingIcon";
+import CloseIcon from "./CloseIcon";
+import HamburgerIcon from "./HamburgerIcon";
+import RewardIcon from "./RewardIcon";
+import LibraryIcon from "./LibraryIcon";
+import TechStackIcon from "./TechStackIcon";
+import SubscriptionIcon from "./SubscriptionIcon";
+import DiscoverIcon from "./DiscoverIcon";
+import BellIcon from "./BellIcon";
+import ArrowRight from "./ArrowRight";
+import CancelIcon from "./CancelIcon";
+
+export {
+  ExclamationCirlce,
+  HomeIcon,
+  SettingIcon,
+  CloseIcon,
+  HamburgerIcon,
+  RewardIcon,
+  LibraryIcon,
+  TechStackIcon,
+  SubscriptionIcon,
+  DiscoverIcon,
+  BellIcon,
+  ArrowRight,
+  CancelIcon,
+};
+
+export const ICONS = {
+  ExclamationCirlce,
+  HomeIcon,
+  SettingIcon,
+  CloseIcon,
+  HamburgerIcon,
+  RewardIcon,
+  LibraryIcon,
+  TechStackIcon,
+  SubscriptionIcon,
+  DiscoverIcon,
+  BellIcon,
+  ArrowRight,
+  CancelIcon,
+};
+
+export default ICONS;

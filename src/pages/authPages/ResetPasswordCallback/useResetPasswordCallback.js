@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../../hooks/supabaseClient";
+import { callSupabase } from "../../../helpers/supabaseWrapper";
 
 const useResetPasswordCallback = () => {
   const navigate = useNavigate();
@@ -8,13 +8,16 @@ const useResetPasswordCallback = () => {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    supabase.auth.getSessionFromUrl().then(({ error }) => {
-      setIsReseting(false);
-      if (error) {
-        setError(error.message);
+ useEffect(() => {
+    (async () => {
+      try {
+        await callSupabase((sb) => sb.auth.getSessionFromUrl());
+        setIsReseting(false);
+      } catch (err) {
+        setIsReseting(false);
+        setError(err?.message ?? "Failed to verify session");
       }
-    });
+    })();
   }, []);
 
   const resetPassword = async (e) => {
@@ -22,21 +25,14 @@ const useResetPasswordCallback = () => {
     setError(null);
     setIsReseting(true);
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword,
-      });
-      if (error) {
-        setError(error.message);
-      } else {
-        navigate("/login");
-      }
+      await callSupabase((sb) => sb.auth.updateUser({ password: newPassword }));
+      navigate("/login");
     } catch (err) {
       setError(err?.message || "Failed to update password");
     } finally {
       setIsReseting(false);
     }
   };
-
   return {
     isReseting,
     newPassword,

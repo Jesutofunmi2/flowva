@@ -28,14 +28,12 @@ const ResetPasswordLogic = () => {
       body: JSON.stringify({ email: normalized, redirect_to: redirect }),
     });
     const body = await res.json();
-    console.log("recover response", res.status, body);
     if (!res.ok) {
       setErrorMessage(body?.error_description ?? body?.error ?? "Failed to send reset email");
     } else {
       setSuccessMessage("We've sent you a password reset link. If your email is registered, it should arrive shortly.");
     }
   } catch (err) {
-    console.error(err);
     setErrorMessage(err?.message || "Failed to send reset email");
   } finally {
     setIsReseting(false);

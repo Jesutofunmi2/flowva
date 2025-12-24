@@ -1,11 +1,11 @@
-export const DiscoverIcon = () => {
+const DiscoverIcon = () => {
   return (
     <svg
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="compass"
-      class="svg-inline--fa fa-compass "
+      className="svg-inline--fa fa-compass "
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
@@ -17,3 +17,5 @@ export const DiscoverIcon = () => {
     </svg>
   );
 };
+
+export default DiscoverIcon;

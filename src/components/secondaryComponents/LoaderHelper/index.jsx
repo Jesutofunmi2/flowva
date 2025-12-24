@@ -1,5 +1,5 @@
 import Images from "../../../assets/images";
-const LoaderHelper = ({ children, isLoading, classNames }) => {
+const LoaderHelper = ({ children, isLoading, classNames, action= "Redirecting..." }) => {
   return (
     <>
       {isLoading ? (
@@ -20,7 +20,7 @@ const LoaderHelper = ({ children, isLoading, classNames }) => {
             alt="FlowvaHub"
             className="google-signin__icon"
           />
-          <p className="dark--text">Redirecting...</p>
+          <p className="dark--text">{action}</p>
         </div>
       ) : (
         children

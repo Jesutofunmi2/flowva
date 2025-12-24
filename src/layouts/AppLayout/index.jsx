@@ -83,7 +83,7 @@ const AppLayout = () => {
                   padding: "2px 6px",
                   fontSize: "12px",
                   lineHeight: 1,
-                  fontWeight: 600,
+                  fontWeight: 500,
                 }}
               >
                 3

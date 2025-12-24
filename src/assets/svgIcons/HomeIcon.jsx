@@ -1,11 +1,11 @@
-export const HomeIcon = () => {
+const HomeIcon = () => {
   return (
     <svg
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="house"
-      class="svg-inline--fa fa-house "
+      className="svg-inline--fa fa-house "
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
@@ -17,3 +17,5 @@ export const HomeIcon = () => {
     </svg>
   );
 };
+
+export default HomeIcon;

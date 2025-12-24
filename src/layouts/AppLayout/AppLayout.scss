@@ -159,7 +159,7 @@
       border-radius: 6px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
       color: #333;
-      margin-bottom: 9px;
+      margin-bottom: 0px;
       border: none;
     }
 
@@ -174,7 +174,7 @@
 /* mobile behavior */
 @media (max-width: 767px) {
   .sidebar {
-    position: fixed;
+    //position: fixed;
     left: 0; /* keep left at 0 and move with transform */
     top: 0;
     height: 100vh;
@@ -205,7 +205,7 @@
 
   .app-layout__main .app-layout__hamburger {
     display: inline-flex;
-    position: relative; /* important: not fixed */
+    position: relative;
     left: auto;
     top: auto;
     z-index: 1200;
@@ -213,11 +213,11 @@
   }
   .app-layout .sidebar {
     position: fixed;
-    left: -260px; /* fully hidden */
+    left: -260px;
     top: 0;
     height: 100vh;
     width: 260px;
-    transform: none; /* use left for slide */
+    transform: none; 
     transition: left 220ms ease;
     z-index: 1000;
   }
@@ -272,9 +272,7 @@
   transform-origin: center;
 }
 
-/* mobile: show and position at same top-left as sidebar top */
 @media (max-width: 767px) {
-  /* match specificity so it overrides desktop rule */
   .app-layout .app-layout__main .app-layout__hamburger {
     display: inline-flex;
     position: fixed;
@@ -310,7 +308,6 @@
   }
 }
 
-/* overlay that covers content when sidebar is open */
 .app-layout__overlay {
   display: none;
 }

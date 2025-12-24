@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../../hooks/supabaseClient";
+import { callSupabase } from "../../../helpers/supabaseWrapper";
 
 const SignupLogic = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const SignupLogic = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
-  const signup = async () => {
+ const signup = async () => {
     setErrorMessage(null);
     if (!email) {
       setErrorMessage("Please enter your email");
@@ -19,19 +19,15 @@ const SignupLogic = () => {
     }
     setIsSigning(true);
     try {
-      setIsSigning(true);
-      const { error } = await supabase.auth.signUp({
-        email: email.trim().toLowerCase(),
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-      });
-      if (error) {
-        setErrorMessage(error.message || "Failed to send magic link");
-      } else {
-        setMessage(
-          "Check your email for the confirmation link to complete signup"
-        );
-      }
+      await callSupabase((sb) =>
+        sb.auth.signUp({
+          email: email.trim().toLowerCase(),
+          password,
+          options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+        })
+      );
+
+      setMessage("Check your email for the confirmation link to complete signup");
     } catch (err) {
       setErrorMessage(err?.message || "Failed to send confirmation link");
     } finally {
@@ -40,19 +36,17 @@ const SignupLogic = () => {
   };
 
   const signInWithGoogle = async () => {
+    setErrorMessage(null);
     try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo: window.location.origin + "/dashboard" },
-      });
+      const res = await callSupabase((sb) =>
+        sb.auth.signInWithOAuth({
+          provider: "google",
+          options: { redirectTo: window.location.origin + "/dashboard" },
+        })
+      );
 
-      if (error) {
-        setErrorMessage(error.message || "Google sign in failed");
-        return;
-      }
-
-      if (data?.url) {
-        window.location.href = data.url;
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
       }
     } catch (err) {
       setErrorMessage(err?.message || "Google sign in failed");

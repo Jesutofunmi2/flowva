@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RequestLoader } from "../../../hooks/context";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../../hooks/supabaseClient";
+import { callSupabase } from "../../../helpers/supabaseWrapper";
 
 const LoginLogic = () => {
   const [email, setEmail] = useState("");
@@ -10,55 +10,46 @@ const LoginLogic = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
-  const login = async () => {
+   const login = async () => {
     setIsLogging(true);
     setErrorMessage(null);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const res = await callSupabase((sb) =>
+        sb.auth.signInWithPassword({ email, password })
+      );
 
-      if (error) {
-        setErrorMessage(error.message || "Login failed");
-        setIsLogging(false);
-        return;
-      }
-
-      const refreshToken = data?.session?.refresh_token ?? data?.refresh_token ?? null;
+      const refreshToken =
+        res?.data?.session?.refresh_token ?? res?.data?.refresh_token ?? null;
       if (refreshToken) {
         localStorage.setItem("refreshToken", refreshToken);
       }
 
-      setIsLogging(false);
       navigate("/dashboard");
     } catch (err) {
-      setErrorMessage(err?.message || "Unexpected error");
+      setErrorMessage(err?.message || "Login failed");
+    } finally {
       setIsLogging(false);
     }
   };
 
- const signInWithGoogle = async () => {
-  try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin + "/dashboard" },
-    });
+  const signInWithGoogle = async () => {
+    setErrorMessage(null);
+    try {
+      const res = await callSupabase((sb) =>
+        sb.auth.signInWithOAuth({
+          provider: "google",
+          options: { redirectTo: window.location.origin + "/dashboard" },
+        })
+      );
 
-    if (error) {
-      setErrorMessage(error.message || "Google sign in failed");
-      return;
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (err) {
+      setErrorMessage(err?.message || "Google sign in failed");
     }
-
-    if (data?.url) {
-      window.location.href = data.url;
-    }
-  } catch (err) {
-    setErrorMessage(err?.message || "Google sign in failed");
-  }
-};
-
+  };
   return {
     email,
     password,

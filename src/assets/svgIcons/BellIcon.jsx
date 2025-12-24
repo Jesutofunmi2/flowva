@@ -1,4 +1,4 @@
-export const BellIcon = () => {
+ const BellIcon = () => {
   return (
     <svg
       aria-hidden="true"
@@ -7,7 +7,7 @@ export const BellIcon = () => {
       data-icon="bell"
       width={10}
       height={10}
-      class="svg-inline--fa fa-bell text-[#2D3748] group-hover:text-[#9013fe]"
+      className="svg-inline--fa fa-bell text-[#2D3748] group-hover:text-[#9013fe]"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
@@ -20,3 +20,4 @@ export const BellIcon = () => {
   );
 };
 
+export default BellIcon;

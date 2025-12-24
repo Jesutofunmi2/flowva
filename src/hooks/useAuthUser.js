@@ -20,7 +20,7 @@ export default function useAuthUser() {
   useEffect(() => {
     let mounted = true;
 
-    refreshUser();
+    //refreshUser();
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return;
@@ -58,5 +58,6 @@ export default function useAuthUser() {
     profileImageUrl,
     refreshUser,
     signOut,
+    setLoading,
   };
 }

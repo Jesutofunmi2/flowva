@@ -1,12 +1,12 @@
 
-export const LibraryIcon = () => {
+const LibraryIcon = () => {
   return (
     <svg
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="box-open"
-      class="svg-inline--fa fa-box-open "
+      className="svg-inline--fa fa-box-open "
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 512"
@@ -18,3 +18,5 @@ export const LibraryIcon = () => {
     </svg>
   );
 };
+
+export default LibraryIcon;

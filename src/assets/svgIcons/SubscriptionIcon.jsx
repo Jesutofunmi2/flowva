@@ -1,12 +1,12 @@
 
-export const SubscriptionIcon = () => {
+const SubscriptionIcon = () => {
   return (
     <svg
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="credit-card"
-      class="svg-inline--fa fa-credit-card "
+      className="svg-inline--fa fa-credit-card "
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
@@ -18,3 +18,5 @@ export const SubscriptionIcon = () => {
     </svg>
   );
 }
+
+export default SubscriptionIcon;

@@ -1,4 +1,4 @@
-export const ExclamationCirlce = ({
+const ExclamationCirlce = ({
   strokeColor = "#15112D",
   width = "17",
   height = "16",
@@ -39,3 +39,5 @@ export const ExclamationCirlce = ({
     </svg>
   );
 };
+
+export default ExclamationCirlce;

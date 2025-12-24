@@ -1,0 +1,25 @@
+
+.api-error-handler {
+  min-height: 70px;
+  width: 90%;
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #fd561f;
+  border-radius: 8px;
+  position: fixed;
+  //bottom: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3500;
+  &__close {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}

@@ -5,14 +5,10 @@ import Error404 from "../pages/ErrorPages/Error404";
 import AuthPages from "../pages/authPages";
 import AppPages from "../pages/appPages";
 
-import {
-  AppGuard,
-  OnboardingGuard,
-} from "../components/common";
+import { AppGuard, OnboardingGuard } from "../components/common";
 import AppLayout from "../layouts/AppLayout";
 
 const useGetRoutes = () => {
-
   const routes = [
     {
       path: "/",
@@ -36,23 +32,25 @@ const useGetRoutes = () => {
           element: <AuthPages.ForgetPassword />,
         },
         {
-          path: pathConstants.LOGIN_OTP_VERIFICATION,
-          element: <AuthPages.LoginOtpVerification />,
-        },
-        {
           path: pathConstants.AUTH_CALLBACK,
-          element: <AuthPages.AuthCallback />
+          element: <AuthPages.AuthCallback />,
         },
         {
           path: pathConstants.RESET_PASSWORD_CALLBACK,
-          element: <AuthPages.ResetPasswordCallback />
-        }
+          element: <AuthPages.ResetPasswordCallback />,
+        },
       ],
     },
 
     // app
     {
-      element: <AppLayout><AppGuard /></AppLayout>,
+      element: (
+        <AppGuard>
+          <AppLayout>
+            <Outlet />
+          </AppLayout>
+        </AppGuard>
+      ),
       children: [
         {
           path: pathConstants.DASHBOARD,
