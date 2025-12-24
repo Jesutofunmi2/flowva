@@ -3,16 +3,17 @@
 
 .login-page {
   background-color: vars.$white-color;
-  max-width: 420px;
+  max-width: 470px;
   border: 1px solid #f3f1fc;
   box-shadow: -4px 8px 24px 0px #2c3f5805;
-  padding: 40px 32px;
+  padding: 56px 32px;
   border-radius: 20px;
   margin: auto;
 
   @include mixins.respond-to("mobile") {
     padding: 25px 16px;
   }
+  
 
   &__container {
     .login__form {
@@ -80,6 +81,7 @@
 
     @include mixins.respond-to("mobile") {
       width: 100%;
+      max-width: 430px;
       padding: 5px 3px;
     }
     @include mixins.respond-to("tablet") {

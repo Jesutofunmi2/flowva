@@ -13,12 +13,7 @@
     margin-top: 10%;
     padding: 50px 0px;
     @include mixins.respond-to("mobile") {
-    padding: 25px 0px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 5%;
+    padding: 50px 0px;
     }
   }
 }

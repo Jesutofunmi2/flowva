@@ -100,8 +100,8 @@ $input-border-color: #EDE9FE;
     background: #feeaea;
     display: inline-block;
     padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px !important;
+    border-radius: 4px;
+    font-size: 12px !important;
   }
 }
 
@@ -157,23 +157,14 @@ $input-border-color: #EDE9FE;
     border-radius: 12px;
     font-size: 14px !important;
   }
-  &--kitchenReady {
-    font-size: 40px;
-    font-weight: bold;
-    color: #19ae57;
-    background: #e5fff0;
-    display: inline-block;
-    padding: 10px 16px;
-    border-radius: 5px;
-    text-align: center;
-  }
 
   &--squaredRadius {
+    font-size: 12px;
     color: $success-color;
     background: #e5fff0;
     display: inline-block;
     padding: 5px 10px;
-    border-radius: 12px;
+    border-radius: 4px !important;
   }
 }
 
@@ -210,7 +201,6 @@ $input-border-color: #EDE9FE;
   }
 }
 
-.comingSoon,
 .dark-purple {
   background: $dark-purple-color !important;
   &--text {

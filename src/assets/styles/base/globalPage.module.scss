@@ -1,90 +1,6 @@
-@import "./mixins";
-@import "./variables";
+@use "./mixins" as mixins;
+@use "./variables" as vars;
 
-.rowNavigations {
-  border-bottom: 1px solid #e8e9eb;
-  // margin: 25px 0 2em 0;
-  display: flex;
-  overflow-y: auto;
-
-  &__item {
-    display: flex;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    font-size: 16px;
-    text-decoration: none !important;
-    padding: 0.5em 0;
-    border-bottom: 2px solid transparent;
-    min-width: fit-content;
-    margin-right: 2rem;
-    cursor: pointer;
-    @include respond-to("tablet") {
-      margin-right: 15px;
-    }
-
-    &.active {
-      color: $purple-color !important;
-      border-color: $purple-color;
-    }
-  }
-}
-
-.tableWrapper {
-  min-height: 500px;
-  background: $white-color;
-  border-radius: 16px;
-  padding-bottom: 24px;
-  &.addBorder {
-    border: 2px solid $purple-color;
-  }
-}
-
-.tableHeader {
-  padding: 24px 24px 24px 24px;
-  border-bottom: 2px solid #e7f1fa;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  @include respond-to("large") {
-    padding: 15px 15px 5px 15px;
-  }
-  .searchField {
-    max-width: 550px;
-    min-width: 350px;
-    width: 100%;
-    @include respond-to("tablet") {
-      min-width: 100%;
-    }
-  }
-}
-
-.plan {
-  color: #1e016f;
-  background: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 12px;
-  border-radius: 16px;
-  border: 2px solid #1e016f;
-  max-width: max-content;
-  font-size: 12px;
-  &.growthPlan {
-    background: $success-color;
-    color: $white-color;
-    border-color: $success-color;
-  }
-  &.essentialPlan {
-    background: $dark-yellow;
-    color: $white-color;
-    border-color: $dark-yellow;
-  }
-  &.scalePlan {
-    background: $purple-color;
-    color: $white-color;
-    border-color: $purple-color;
-  }
-}
 
 .cardWithBackground {
   background-color: #f3f1fc;
@@ -101,25 +17,25 @@
   flex-direction: column;
   gap: 5px;
   border-radius: 8px;
-  border: $light-border;
+  border: vars.$light-border;
 }
 
 .pagePaddings {
   padding-top: 1.5em;
   padding-bottom: 30px;
-  @include respond-to("big-tablet") {
+  @include mixins.respond-to("big-tablet") {
     padding-top: 1.5em;
   }
 }
 
 .borderBottom {
-  border-bottom: $light-border;
+  border-bottom: vars.$light-border;
 }
 
 .borderTop {
-  border-top: $light-border;
+  border-top: vars.$light-border;
   &Purple {
-    border-color: $purple-color;
+    border-color: vars.$purple-color;
   }
 }
 
@@ -129,26 +45,25 @@
 }
 
 .pageColumnGaps {
-  gap: 25px;
   display: flex;
   flex-direction: column;
-}
+  gap: 20px;
 
+}
+.subTitle {
+  display: flex;
+  flex-direction: column;
+  background: #f7f7fb;
+  padding: 1px 2px;
+}   
 .pageHeaders {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  padding: 10px 20px;
   flex-wrap: wrap;
-}
-
-.prodouctTypeTag {
-  background: #efefef;
-  padding: 2px 8px;
-  border-radius: 8px;
-  width: fit-content;
-  font-size: 12px;
-  color: $light-gray-color;
+  background: #f7f7fb;
 }
 
 .errorMessage {
@@ -180,26 +95,21 @@
 
 .statusBlock--pending {
   @include statusBlock();
-  background: $light-yellow;
-  color: $dark-yellow;
+  background: vars.$light-yellow;
+  color: vars.$dark-yellow;
 }
 
-.statusBlock--success {
-  @include statusBlock();
-  color: $lumi-green;
-  background: $light-green-lumi;
-}
 
 .statusBlock--failed {
   @include statusBlock();
-  color: $danger-color;
-  background: $light-danger;
+  color: vars.$danger-color;
+  background: vars.$light-danger;
 }
 
 .statusBlock--purple {
   @include statusBlock();
-  color: $purple-color;
-  background: $secondary-bg;
+  color: vars.$purple-color;
+  background: vars.$secondary-bg;
 }
 
 .bottomButtonCover,
@@ -213,141 +123,19 @@
   & > div {
     order: 1;
     &:first-child {
-      @include respond-to("mobile") {
+      @include mixins.respond-to("mobile") {
         order: 2;
       }
     }
   }
 }
 
-.fixedbottomButtonCover {
-  position: fixed;
-  bottom: 0;
-  background: $white-color;
-  padding: 15px 32px;
-  width: calc(100% - 270px);
-  left: 270px;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
-  z-index: 1;
-  &.isCollapseSideMenu {
-    width: calc(100% - 95px);
-    left: 95px;
-  }
-
-  @include respond-to("small") {
-    width: 100% !important;
-    position: sticky;
-    margin-top: auto;
-    left: 0 !important;
-    box-shadow: none;
-    padding: 15px 20px;
-  }
-}
-
-.stickyBottomCover {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: $white-color;
-  padding: 10px 0px;
-  margin-top: auto;
-  z-index: 1;
-  gap: 10px;
-  display: flex;
-}
 
 .gridDetailsView {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  column-gap: 30px;
-  background-color: $white-color;
-  row-gap: 30px;
-  border-radius: 12px;
-  padding: 24px;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 20px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.gridContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  gap: 5px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.grid > div {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media (max-width: 768px) {
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
-  }
-}
-
-.gridContainer > div {
-  padding: 10px;
-  border-right: 2px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media (max-width: 768px) {
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
-  }
-}
-
-.gridContainer > div:last-child {
-  border-right: none;
-}
-
-.grid > div:last-child {
-  border-right: none;
-}
-
-.noTextDecoration:hover {
-  text-decoration: none !important;
-}
-
-.noOfPends {
-  width: 25px;
-  height: 25px;
-  flex-shrink: 0;
-  background: $danger-color;
-  border-radius: 25px;
-  color: $white-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-}

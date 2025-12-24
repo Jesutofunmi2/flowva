@@ -11,7 +11,7 @@ const LoaderHelper = ({ children, isLoading, classNames }) => {
             flexDirection: "column",
             gap: "5px",
             justifyContent: "center",
-            minHeight: "100vh",
+            minHeight: "60vh",
           }}
         >
           <img

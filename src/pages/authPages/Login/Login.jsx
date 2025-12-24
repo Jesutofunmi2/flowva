@@ -44,7 +44,7 @@ const Login = () => {
             <form onSubmit={handleSubmit(login)} className="login__form">
               {/* error message */}
               {errorMessage !== null && (
-                <p className="error--text text-center mb-1">{errorMessage}</p>
+                <p className="error--squared text-center mb-1">{errorMessage}</p>
               )}
               <div className="form-group">
                 <Controller

@@ -10,5 +10,14 @@ export const pathConstants = {
 
   // APP PATH
   DASHBOARD: "/dashboard",
-  DASHBOARD_MAIN: "/dashboard/main",
+  SETTINGS: "/settings",
+  REWARDS: "/rewardHub",
+  SUBSCRIPTIONS: "/subscriptions",
+  TECH_STACK: "/tech-stack",
+  LIBRARY: "/library",
+  DISCOVER: "/discover",
+
+  // ERROR PAGES
+  ERROR_404: "/404",
+  ERROR_500: "/500",
 };

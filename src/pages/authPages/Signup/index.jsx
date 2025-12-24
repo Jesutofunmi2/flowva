@@ -46,10 +46,10 @@ const Signup = () => {
             <form onSubmit={handleSubmit(signup)} className="login__form">
               {/* error message */}
               {errorMessage !== null && (
-                <p className="error--text text-center mb-1">{errorMessage}</p>
+                <p className="error--squared mb-1">{errorMessage}</p>
               )}
               {message !== null && (
-                <p className="success--text text-center mb-1 font-weight-semibold">{message}</p>
+                <p className="success--squaredRadius">{message}</p>
               )}
               <div className="form-group">
                 <Controller

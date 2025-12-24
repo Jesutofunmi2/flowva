@@ -1,0 +1,344 @@
+@use "../../assets/styles/base/variables" as vars;
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+
+  .sidebar {
+    width: 260px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 40;
+
+    &__top {
+      padding: 10px;
+      //text-align: center;
+    }
+
+    &__logo {
+      width: 100px;
+      display: inline-block;
+    }
+
+    &__nav {
+      padding: 8px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: #000;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
+
+      & .sidebar__icon svg {
+        width: 15px;
+        height: 15px;
+        fill: currentColor;
+      }
+
+      &:hover {
+        background: rgba(144, 19, 254, 0.1);
+        color: #9013fe;
+      }
+
+      &.active {
+        background: rgba(144, 19, 254, 0.1);
+        color: #9013fe;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+    }
+
+    &__icon {
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__bottom {
+      padding: 16px;
+      border-top: 1px solid #eee;
+      margin-top: auto; // ensures bottom area stays at the bottom while other items start from top
+    }
+
+    &__profile {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    &__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &__profile-menu {
+      position: absolute;
+      bottom: 72px;
+      left: 16px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 8px;
+      width: 160px;
+      z-index: 60;
+
+      &-item {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        text-align: left;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+    }
+
+    &__overlay {
+      display: none;
+    }
+  }
+
+  .app-layout__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .app-layout__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 20px;
+      gap: 12px;
+      background: #f7f7fb;
+    }
+
+    /* title */
+    .app-layout__title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+
+      @media (max-width: 767px) {
+        font-size: 14px;
+         padding-left: 50px;
+      }
+    }
+
+    .app-layout__hamburger {
+      position: relative;
+      //display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      width: 40px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      color: #333;
+      margin-bottom: 9px;
+      border: none;
+    }
+
+    .app-layout__content {
+      padding: 24px;
+      flex: 1;
+      background: #f7f7fb;
+    }
+  }
+}
+
+/* mobile behavior */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    left: 0; /* keep left at 0 and move with transform */
+    top: 0;
+    height: 100vh;
+    transition: transform 0.22s ease;
+    transform: translateX(-260px); /* hide off-screen to the left */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+    &.open {
+      transform: translateX(0); /* slide into view */
+    }
+
+    &__overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease;
+      z-index: 30;
+
+      &.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  .app-layout__main .app-layout__hamburger {
+    display: inline-flex;
+    position: relative; /* important: not fixed */
+    left: auto;
+    top: auto;
+    z-index: 1200;
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .app-layout .sidebar {
+    position: fixed;
+    left: -260px; /* fully hidden */
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    transform: none; /* use left for slide */
+    transition: left 220ms ease;
+    z-index: 1000;
+  }
+
+  /* when open, bring sidebar onto the screen */
+  .app-layout .sidebar.open {
+    left: 0;
+  }
+
+  /* make main content take full width when sidebar is closed */
+  .app-layout .app-layout__main {
+    margin-left: 0; /* no reserved space on mobile */
+    transition: margin-left 220ms ease, transform 220ms ease;
+  }
+
+  /* overlay visibility */
+  .app-layout__overlay {
+    display: none;
+  }
+  .app-layout.is-sidebar-open .app-layout__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* hamburger base (desktop hidden by default) */
+.app-layout__hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  gap: 4px;
+  width: 28px;
+  height: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* three lines style (kept for potential fallback) */
+.app-layout__hamburger .hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #9013fe;
+  border-radius: 2px;
+  transition: transform 220ms ease, opacity 180ms ease, background-color 180ms;
+  transform-origin: center;
+}
+
+/* mobile: show and position at same top-left as sidebar top */
+@media (max-width: 767px) {
+  /* match specificity so it overrides desktop rule */
+  .app-layout .app-layout__main .app-layout__hamburger {
+    display: inline-flex;
+    position: fixed;
+    left: 16px;
+    top: 18px;
+    z-index: 10050;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    color: #9013fe;
+  }
+
+  .app-layout.is-sidebar-open
+    .app-layout__hamburger
+    .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background-color: #9013fe;
+  }
+  .app-layout.is-sidebar-open
+    .app-layout__hamburger
+    .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.6);
+  }
+  .app-layout.is-sidebar-open
+    .app-layout__hamburger
+    .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: #9013fe;
+  }
+  .app-layout.is-sidebar-open .app-layout__hamburger .hamburger-line {
+    background: #9013fe;
+  }
+}
+
+/* overlay that covers content when sidebar is open */
+.app-layout__overlay {
+  display: none;
+}
+
+.sidebar__profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  .sidebar__profile-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .sidebar__name,
+  .sidebar__email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+    font-size: 14px;
+  }
+
+  .sidebar__email {
+    color: #666;
+    font-size: 13px;
+  }
+}

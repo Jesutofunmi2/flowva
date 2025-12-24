@@ -32,7 +32,7 @@ const ResetPasswordLogic = () => {
     if (!res.ok) {
       setErrorMessage(body?.error_description ?? body?.error ?? "Failed to send reset email");
     } else {
-      setSuccessMessage("Check your email for the password reset link");
+      setSuccessMessage("We've sent you a password reset link. If your email is registered, it should arrive shortly.");
     }
   } catch (err) {
     console.error(err);

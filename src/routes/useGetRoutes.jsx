@@ -9,6 +9,7 @@ import {
   AppGuard,
   OnboardingGuard,
 } from "../components/common";
+import AppLayout from "../layouts/AppLayout";
 
 const useGetRoutes = () => {
 
@@ -51,11 +52,15 @@ const useGetRoutes = () => {
 
     // app
     {
-      element: <AppGuard><Outlet /></AppGuard>,
+      element: <AppLayout><AppGuard /></AppLayout>,
       children: [
         {
           path: pathConstants.DASHBOARD,
           element: <AppPages.Dashboard />,
+        },
+        {
+          path: pathConstants.REWARDS,
+          element: <AppPages.RewardHub />,
         },
       ],
     },

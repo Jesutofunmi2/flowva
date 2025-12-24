@@ -3,7 +3,7 @@
 
 .login-page {
   background-color: vars.$white-color;
-  max-width: 420px;
+  max-width: 430px;
   border: 1px solid #f3f1fc;
   box-shadow: -4px 8px 24px 0px #2c3f5805;
   padding: 40px 32px;
@@ -47,7 +47,7 @@
   .login__form > .text-right {
     margin: 0;
   }
-  
+
  .google-signin {
   display: flex;
   align-items: center;
@@ -75,10 +75,12 @@
 
     @include mixins.respond-to("mobile") {
       width: 100%;
+      max-width: 430px;
       padding: 5px 3px;
     }
     @include mixins.respond-to("tablet") {
       width: 100%;
+      max-width: 430px;
       padding: 5px 3px;
     }
 

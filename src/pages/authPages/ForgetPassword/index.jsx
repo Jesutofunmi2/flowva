@@ -40,10 +40,10 @@ const ForgetPassword = () => {
             <form onSubmit={handleSubmit(forgetPassword)} className="login__form">
               {/* error message */}
               {errorMessage !== null && (
-                <p className="error--text text-center mb-1">{errorMessage}</p>
+                <p className="error--squared mb-1">{errorMessage}</p>
               )}
               {successMessage !== null && (
-                <p className="success--text text-center mb-1">{successMessage}</p>
+                <p className="success--squaredRadius mb-1">{successMessage}</p>
               )}
               <div className="form-group">
                 <Controller

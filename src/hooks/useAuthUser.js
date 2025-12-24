@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 export default function useAuthUser() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const refreshUser = useCallback(async () => {
     setLoading(true);
@@ -37,12 +39,24 @@ export default function useAuthUser() {
     user?.user_metadata?.name ??
     user?.email?.split("@")[0] ??
     "";
+  const displayEmail = user?.email ?? "";
+  const profileImageUrl =
+    user?.user_metadata?.avatar_url ?? user?.user_metadata?.picture ?? null;
 
   const signOut = async () => {
     await supabase.auth.signOut();
     localStorage.removeItem("refreshToken");
     setUser(null);
+    navigate("/login");
   };
 
-  return { user, loading, displayName, refreshUser, signOut };
+  return {
+    user,
+    loading,
+    displayName,
+    displayEmail,
+    profileImageUrl,
+    refreshUser,
+    signOut,
+  };
 }
