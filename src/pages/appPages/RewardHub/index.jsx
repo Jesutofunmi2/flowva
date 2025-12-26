@@ -83,8 +83,9 @@ const RewardHub = () => {
       <SecondaryComponents.Modal
         isOpen={openClaimModal}
         onClose={() => setOpenClaimModal(false)}
-        content={<SecondaryComponents.RewardClaimModalContent points={5} />}
-      />
+      >
+        <SecondaryComponents.RewardClaimModalContent points={5} />
+      </SecondaryComponents.Modal>
     </MetaSetter>
   );
 };
