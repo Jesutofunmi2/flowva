@@ -9,7 +9,6 @@ const useRewardHub = () => {
 
   const handleClaim = async () => {
     await claim(5);
-    setOpenClaimModal(true);
   };
   return {
     pointsTotal: total,

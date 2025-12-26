@@ -36,7 +36,10 @@ const RewardHub = () => {
           days={["M", "T", "W", "T", "F", "S", "S"]}
           activeIndex={2}
           claimedToday={claimedToday}
-          onClaim={handleClaim}
+          onClaim={() => {
+            setOpenClaimModal(true);
+            handleClaim();
+          }}
           loading={loading}
           claimedDates={claimedDates}
         />

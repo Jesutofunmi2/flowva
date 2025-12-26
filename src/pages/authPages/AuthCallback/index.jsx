@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { callSupabase } from "../../../helpers/supabaseWrapper";
+import { supabase } from "../../../hooks/supabaseClient";
 
 const AuthCallback = () => {
   const navigate = useNavigate();
@@ -8,11 +9,22 @@ const AuthCallback = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data, error } = await callSupabase((sb) => sb.auth.getSessionFromUrl());
-        if (error) { navigate("/login"); return; }
+        let sessionResp;
+        if (typeof supabase.auth.getSessionFromUrl === "function") {
+          sessionResp = await supabase.auth.getSessionFromUrl();
+        } else if (typeof supabase.auth.getSession === "function") {
+          sessionResp = await supabase.auth.getSession();
+        } else {
+          const res = await callSupabase((sb) => sb.auth.getSession());
+          sessionResp = { data: res.data, error: res.error };
+        }
 
-        const user = data?.session?.user ?? null;
-        if (!user?.id) { navigate("/login"); return; }
+        const data = sessionResp?.data ?? {};
+        const user = data?.session?.user ?? data?.user ?? null;
+        if (!user?.id) {
+          navigate("/login");
+          return;
+        }
 
         await callSupabase((sb) =>
           sb.from("profiles").upsert(

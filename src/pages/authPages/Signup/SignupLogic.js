@@ -36,6 +36,7 @@ const SignupLogic = () => {
   const signInWithGoogle = async () => {
     setErrorMessage(null);
     try {
+      if (ref) localStorage.setItem("referral", ref);
       const res = await callSupabase((sb) =>
         sb.auth.signInWithOAuth({
           provider: "google",
