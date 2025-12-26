@@ -10,15 +10,13 @@ const SignupLogic = () => {
   const [isSigning, setIsSigning] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const ref = new URLSearchParams(window.location.search).get('ref');
 
  const signup = async () => {
     setErrorMessage(null);
-    if (!email) {
-      setErrorMessage("Please enter your email");
-      return;
-    }
     setIsSigning(true);
     try {
+      if (ref) localStorage.setItem("referral", ref);
       await callSupabase((sb) =>
         sb.auth.signUp({
           email: email.trim().toLowerCase(),

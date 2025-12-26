@@ -1,5 +1,3 @@
-// src/layouts/Sidebar/index.jsx
-
 import { NavLink } from "react-router-dom";
 import Images from "../../assets/images";
 import { appSidebarItems } from "../../localdata/appSidebarItems";
@@ -25,7 +23,6 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
       >
         <div className="sidebar__top">
           <img src={Images.logo} alt="FlowvaHub" className="sidebar__logo" />
-          
         </div>
 
         <nav className="sidebar__nav">

@@ -1,0 +1,117 @@
+.referral-share-card {
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: #9013fe;
+  }
+
+  &__head {
+    padding: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    background: #eef2ff;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(144, 19, 254, 0.1);
+    color: #9013fe;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #374151;
+  }
+  &__subtitle {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  &__stat {
+    flex: 1;
+    text-align: center;
+  }
+  &__stat-value {
+    font-weight: 800;
+    color: #9013fe;
+    font-size: 1.25rem;
+  }
+  &__stat-label {
+    color: #6b7280;
+    font-size: 0.85rem;
+  }
+
+  &__linkwrap {
+    padding: 1rem;
+    background: #fbfbff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin: 0 1rem;
+  }
+  &__input {
+    width: 80%;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+  }
+  &__copy {
+    position: relative;
+    right: 12px;
+    margin-top: 20px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #9013fe;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    justify-content: center;
+  }
+  .referral-share-card__action {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__copied {
+    padding: 0.5rem 1rem;
+    color: #065f46;
+    font-size: 0.85rem;
+  }
+}

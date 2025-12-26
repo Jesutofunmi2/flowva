@@ -17,7 +17,6 @@
 
     &__top {
       padding: 10px;
-      //text-align: center;
     }
 
     &__logo {
@@ -73,7 +72,7 @@
     &__bottom {
       padding: 16px;
       border-top: 1px solid #eee;
-      margin-top: auto; // ensures bottom area stays at the bottom while other items start from top
+      margin-top: auto;
     }
 
     &__profile {
@@ -134,7 +133,6 @@
       background: #f7f7fb;
     }
 
-    /* title */
     .app-layout__title {
       margin: 0;
       font-size: 14px;
@@ -149,7 +147,6 @@
 
     .app-layout__hamburger {
       position: relative;
-      //display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 8px;
@@ -171,19 +168,17 @@
   }
 }
 
-/* mobile behavior */
 @media (max-width: 767px) {
   .sidebar {
-    //position: fixed;
-    left: 0; /* keep left at 0 and move with transform */
+    left: 0;
     top: 0;
     height: 100vh;
     transition: transform 0.22s ease;
-    transform: translateX(-260px); /* hide off-screen to the left */
+    transform: translateX(-260px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 
     &.open {
-      transform: translateX(0); /* slide into view */
+      transform: translateX(0);
     }
 
     &__overlay {
@@ -222,18 +217,15 @@
     z-index: 1000;
   }
 
-  /* when open, bring sidebar onto the screen */
   .app-layout .sidebar.open {
     left: 0;
   }
 
-  /* make main content take full width when sidebar is closed */
   .app-layout .app-layout__main {
     margin-left: 0; /* no reserved space on mobile */
     transition: margin-left 220ms ease, transform 220ms ease;
   }
 
-  /* overlay visibility */
   .app-layout__overlay {
     display: none;
   }
@@ -246,7 +238,6 @@
   }
 }
 
-/* hamburger base (desktop hidden by default) */
 .app-layout__hamburger {
   display: none;
   background: transparent;
@@ -261,7 +252,6 @@
   cursor: pointer;
 }
 
-/* three lines style (kept for potential fallback) */
 .app-layout__hamburger .hamburger-line {
   display: block;
   width: 100%;

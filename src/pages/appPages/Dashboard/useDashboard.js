@@ -2,9 +2,11 @@
 import useAuthUser from "../../../hooks/useAuthUser";
 import { useState, useEffect, useCallback } from "react";
 import { callSupabase } from "../../../helpers/supabaseWrapper";
+import useDailyPoints from "../../../hooks/useDailyPoints";
 
 const useDashboard = () => {
   const { loading: authLoading, displayName, user } = useAuthUser();
+  const { total } = useDailyPoints();
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLocalLoading] = useState(false);
@@ -47,6 +49,7 @@ const useDashboard = () => {
     cards,
     error,
     refresh: fetchCards,
+    total,
   };
 };
 

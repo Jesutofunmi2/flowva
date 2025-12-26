@@ -3,7 +3,6 @@ export const getUrlQuerysection = () => {
   return queries;
 };
 
-// this function removes null, undefined and empty string values from an object
 export function cleanObject(obj, keys = []) {
   for (let propName in obj) {
     if (
@@ -15,7 +14,7 @@ export function cleanObject(obj, keys = []) {
       delete obj[propName];
     }
   }
-  // delete key name specified
+
   keys?.forEach((key) => {
     delete obj[key];
   });
@@ -27,10 +26,8 @@ export const formatNumberWithCommas = (number = 0) => {
   number = `${number}`;
   const [integerPart, decimalPart] = number.split(".");
 
-  // Add commas to the integer part
   const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  // Return the formatted number with decimals (if any)
   return decimalPart || number?.includes(".")
     ? `${formattedInteger}.${decimalPart || ""}`
     : formattedInteger;
@@ -66,7 +63,7 @@ export const getPageTitle = ({
 
     const looksLikeId = (seg) =>
       !seg ||
-      /^\d+$/.test(seg) || // numbers
+      /^\d+$/.test(seg) ||
       /^[0-9a-fA-F-]{8,}$/.test(seg) ||
       /^[0-9a-fA-F]{24}$/.test(seg);
 
@@ -78,11 +75,10 @@ export const getPageTitle = ({
     const normalized = (segment || "").replace(/[-_]/g, " ").trim();
     const key = normalized.toLowerCase();
 
-    // Allow callers to pass a mapping of path -> friendly name (e.g. { rewards: "RewardHub" })
+
     if (routeAliases[key]) {
       titleText = routeAliases[key];
     } else {
-      // Fallback: prettify the segment
       titleText = normalized
         ? normalized.replace(/\b\w/g, (c) => c.toUpperCase())
         : "";
@@ -90,4 +86,9 @@ export const getPageTitle = ({
   }
 
   return { pathname, isDashboard, titleHtml, titleText };
+};
+
+export const getWeekIndexFromDate = (date = new Date()) => {
+  const d = date.getDay();
+  return d === 0 ? 6 : d - 1;
 };

@@ -40,12 +40,8 @@ const Login = () => {
                 Log in to receive personalized recommendations
               </p>
             </div>
-            {/* login form section */}
             <form onSubmit={handleSubmit(login)} className="login__form">
-              {/* error message */}
-              {errorMessage !== null && (
-                <p className="error--squared text-center mb-1">{errorMessage}</p>
-              )}
+              {errorMessage && <p className="error--squared text-center mb-1">{errorMessage}</p>}
               <div className="form-group">
                 <Controller
                   name="email"

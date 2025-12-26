@@ -9,7 +9,7 @@ import "../ForgetPassword/ForgetPassword.scss";
 const ResetPasswordCallback = () => {
   const { error, isReseting, newPassword, setNewPassword, resetPassword } =
     useResetPasswordCallback();
-   const {
+  const {
     register,
     handleSubmit,
     formState: { errors },
@@ -26,15 +26,13 @@ const ResetPasswordCallback = () => {
               <h4 className="light-purple--text font-weight-bold">
                 Save New Password
               </h4>
-              <p className="small-text-size">
-                Enter your new password
-              </p>
+              <p className="small-text-size">Enter your new password</p>
             </div>
-       <form onSubmit={handleSubmit(resetPassword)} className="login__form">
-              {/* error message */}
-              {error !== null && (
-                <p className="error--text text-center mb-1">{error}</p>
-              )}
+            <form
+              onSubmit={handleSubmit(resetPassword)}
+              className="login__form"
+            >
+              {error && <p className="error--text text-center mb-1">{error}</p>}
               <div className="form-group">
                 <Controller
                   name="password"
@@ -69,10 +67,10 @@ const ResetPasswordCallback = () => {
                 Save New Password
               </PrimaryComponents.Button>
             </form>
-            </div>
+          </div>
         </div>
-    </LoginLayout>
-      </Motion.div>
+      </LoginLayout>
+    </Motion.div>
   );
 };
 

@@ -15,7 +15,6 @@ const useGetRoutes = () => {
       element: <Navigate to={pathConstants.LOGIN} replace />,
     },
 
-    // auth
     {
       element: <OnboardingGuard />,
       children: [
@@ -42,7 +41,6 @@ const useGetRoutes = () => {
       ],
     },
 
-    // app
     {
       element: (
         <AppGuard>

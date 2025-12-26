@@ -3,12 +3,14 @@ import logo from "./logo.png";
 import GoogleIcon from "./googleIcon.svg";
 import Bell from "./notification-bell.svg";
 import Banner from "./banner.png";
+import ReClaim from "./reclaim.png";
 
 const Images = {
     notFoundImage,
     logo,
     GoogleIcon,
     Bell,
-    Banner
+    Banner,
+    ReClaim
 }
 export default Images;

@@ -8,7 +8,7 @@ import { Controller } from "react-hook-form";
 import ForgetPasswordValidation from "./ForgetPasswordValidation";
 
 const ForgetPassword = () => {
-    const {
+  const {
     email,
     forgetPassword,
     setEmail,
@@ -24,7 +24,7 @@ const ForgetPassword = () => {
     trigger,
   } = ForgetPasswordValidation(email);
   return (
-        <Motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <Motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <LoginLayout>
         <div className="login-page">
           <div className="login-page__container">
@@ -36,15 +36,13 @@ const ForgetPassword = () => {
                 Enter your email to receive a reset link
               </p>
             </div>
-            {/* login form section */}
-            <form onSubmit={handleSubmit(forgetPassword)} className="login__form">
-              {/* error message */}
-              {errorMessage !== null && (
-                <p className="error--squared mb-1">{errorMessage}</p>
-              )}
-              {successMessage !== null && (
-                <p className="success--squaredRadius mb-1">{successMessage}</p>
-              )}
+         
+            <form
+              onSubmit={handleSubmit(forgetPassword)}
+              className="login__form"
+            >
+              {errorMessage && <p className="error--squared mb-1">{errorMessage}</p>}
+              {successMessage && <p className="success--squaredRadius mb-1">{successMessage}</p>}
               <div className="form-group">
                 <Controller
                   name="email"
@@ -80,9 +78,8 @@ const ForgetPassword = () => {
               </PrimaryComponents.Button>
             </form>
 
-
             <p className="signup-link smallest-text-size">
-              Remember your password? {" "}
+              Remember your password?
               <Link
                 to="/login"
                 className="purple--text smallest-text-size font-weight-semibold"
@@ -94,7 +91,7 @@ const ForgetPassword = () => {
         </div>
       </LoginLayout>
     </Motion.div>
-  )
-}
+  );
+};
 
 export default ForgetPassword;

@@ -8,7 +8,7 @@ const useResetPasswordCallback = () => {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     (async () => {
       try {
         await callSupabase((sb) => sb.auth.getSessionFromUrl());

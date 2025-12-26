@@ -1,4 +1,3 @@
-
 import "./SignUp.scss";
 import { LoginLayout } from "../../../layouts";
 import PrimaryComponents from "../../../components/primaryComponents";
@@ -9,7 +8,7 @@ import SignUpFormValidation from "./SignupValidation";
 import { Controller } from "react-hook-form";
 import Images from "../../../assets/images";
 const Signup = () => {
-    const {
+  const {
     email,
     password,
     signup,
@@ -30,7 +29,7 @@ const Signup = () => {
     trigger,
   } = SignUpFormValidation(email, password, confirmPassword);
   return (
-     <Motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <Motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <LoginLayout>
         <div className="login-page">
           <div className="login-page__container">
@@ -38,19 +37,14 @@ const Signup = () => {
               <h4 className="light-purple--text font-weight-bold">
                 Create Your Account
               </h4>
-              <p className="small-text-size">
-                Sign up to manage your tools
-              </p>
+              <p className="small-text-size">Sign up to manage your tools</p>
             </div>
-            {/* login form section */}
+
             <form onSubmit={handleSubmit(signup)} className="login__form">
-              {/* error message */}
-              {errorMessage !== null && (
+              {errorMessage && (
                 <p className="error--squared mb-1">{errorMessage}</p>
               )}
-              {message !== null && (
-                <p className="success--squaredRadius">{message}</p>
-              )}
+              {message && <p className="success--squaredRadius">{message}</p>}
               <div className="form-group">
                 <Controller
                   name="email"
@@ -100,7 +94,7 @@ const Signup = () => {
                 />
               </div>
 
-               <div className="mb-1">
+              <div className="mb-1">
                 <Controller
                   name="confirmPassword"
                   control={control}
@@ -117,20 +111,21 @@ const Signup = () => {
                         setConfirmPassword(value);
                       }}
                       onKeyUp={() =>
-                        errors.confirmPassword !== undefined && trigger("confirmPassword")
+                        errors.confirmPassword !== undefined &&
+                        trigger("confirmPassword")
                       }
                       register={register}
                     />
                   )}
                 />
               </div>
-        
+
               <PrimaryComponents.Button
                 classNames="btn btn--primary cover"
                 type="submit"
                 isDisabled={isSigning}
                 isLoading={isSigning}
-                loadingText="Creating..."
+                loadingText="Signing Up..."
               >
                 Sign Up Account
               </PrimaryComponents.Button>

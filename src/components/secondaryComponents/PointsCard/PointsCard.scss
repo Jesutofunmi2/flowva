@@ -1,0 +1,108 @@
+.points-card {
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+  }
+
+  &__header {
+    padding: 1rem;
+    background: #eef2ff;
+    border-bottom: 1px solid #f3f4f6;
+    position: relative;
+  }
+
+  &__title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  &__icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0rem;
+    flex: 0 0 40px;
+    font-size: 1rem;
+
+    svg { width: 20px; height: 20px; fill: currentColor; }
+  }
+
+  &__body {
+    padding: 1rem;
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__value {
+    font-weight: 600;
+    font-size: 30px;
+    color: #9013FE;
+    margin: 10px 0;
+  }
+
+  &__lottie {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    display: block;
+    background: transparent;
+  }
+
+  &__progress {
+    margin-top: 1rem;
+  }
+
+  &__progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  &__progress-label { color: #4b5563; }
+  &__progress-target { font-weight: 600; }
+  &__progress-count { font-weight: 600; }
+
+  &__progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #9013FE 0%, #FF9FF5 100%);
+    border-radius: 9999px;
+    transition: width 500ms ease-in-out;
+    width: 0%;
+  }
+
+  &__hint {
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
