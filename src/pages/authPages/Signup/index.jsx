@@ -142,6 +142,8 @@ const Signup = () => {
               classNames="btn btn--outline cover"
               type="button"
               onClick={signInWithGoogle}
+              isDisabled={isSigning}
+              isLoading={isSigning}
               loadingText="Creating..."
             >
               <div className="google-signin">

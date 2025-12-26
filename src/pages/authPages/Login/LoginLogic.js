@@ -33,6 +33,7 @@ const LoginLogic = () => {
   };
 
   const signInWithGoogle = async () => {
+    setIsLogging(true);
     setErrorMessage(null);
     try {
       const res = await callSupabase((sb) =>
@@ -47,6 +48,8 @@ const LoginLogic = () => {
       }
     } catch (err) {
       setErrorMessage(err?.message || "Google sign in failed");
+    } finally {
+      setIsLogging(false);
     }
   };
   return {

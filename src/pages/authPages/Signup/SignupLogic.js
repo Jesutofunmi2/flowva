@@ -35,6 +35,7 @@ const SignupLogic = () => {
 
   const signInWithGoogle = async () => {
     setErrorMessage(null);
+     setIsSigning(true);
     try {
       if (ref) localStorage.setItem("referral", ref);
       const res = await callSupabase((sb) =>
@@ -49,6 +50,8 @@ const SignupLogic = () => {
       }
     } catch (err) {
       setErrorMessage(err?.message || "Google sign in failed");
+    } finally {
+      setIsSigning(false);
     }
   };
 

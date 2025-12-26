@@ -122,6 +122,8 @@ const Login = () => {
               type="button"
               loadingText="Connecting..."
               onClick={signInWithGoogle}
+              isDisabled={isLogging}
+              isLoading={isLogging}
             >
               <div className="google-signin">
                 <img
