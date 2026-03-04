@@ -5,11 +5,11 @@ import SecondaryComponents from "../../../components/secondaryComponents";
 import { pathConstants } from "../../../routes/pathContants";
 import ICONS from "../../../assets/svgIcons";
 
-const Question = () => {
 
+ const CandidateConfig = () => {
   return (
     <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Question"
+      title="Redeemer Teap International School, | Candidate"
       description="View all dashboard activities and statistics on Redeemer Teap International School,."
     >
       <LoaderHelper
@@ -21,15 +21,17 @@ const Question = () => {
           className={globalStyles.gridDetailsView}
           style={{ marginTop: "-30px" }}
         >
+          
+            
               <Card
                 key={1}
-                to={pathConstants.ALL_QUESTION}
+                to={pathConstants.CREATE_CANDIDATE}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"All Question"}
+                title={"Add Candidate"}
                 count={0}
-                description={"All Question"}
+                description={"Add Candidate"}
                 ctaText="View"
               />
 
@@ -39,9 +41,9 @@ const Question = () => {
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Question Categories"}
+                title={"All Candidates"}
                 count={0}
-                description={"Question Categories"}
+                description={"All Candidates"}
                 ctaText="View"
               />
 
@@ -51,9 +53,9 @@ const Question = () => {
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Question Type"}
+                title={"Candidate Performance"}
                 count={0}
-                description={"Question Type"}
+                description={"Candidate Performance"}
                 ctaText="View"
               />
 
@@ -63,9 +65,9 @@ const Question = () => {
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Bulk Upload Questions"}
+                title={"Candidate Profiles"}
                 count={0}
-                description={"Bulk Upload Questions"}
+                description={"Candidate Profiles"}
                 ctaText="View"
               />
         
@@ -74,6 +76,6 @@ const Question = () => {
       </LoaderHelper>
     </SecondaryComponents.MetaSetter>
   );
-};
+}
 
-export default Question;
+export default CandidateConfig;

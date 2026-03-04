@@ -10,6 +10,7 @@ export const pathConstants = {
   ADMIN_DASHBOARD: "/admin_dashboard",
   CANDIDATE_DASHBOARD: "/candidate_dashboard",
   CREATE_ASSESSMENT: "/create_assessment",
+  CREATE_CANDIDATE: "/create_candidate",
   QUESTION: "question",
   CANDIDATE: "/candidates",
   RESULT: "/result",

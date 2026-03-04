@@ -15,7 +15,7 @@ export const adminSidebarItems = [
     icon: (active = false) => (
       <HomeIcon strokeColor={active ? "#FFD700" : "#000"} />
     ),
-    routePath: pathConstants.DASHBOARD,
+    routePath: pathConstants.ADMIN_DASHBOARD,
   },
   {
     name: "Exam Management",
@@ -55,7 +55,7 @@ export const adminSidebarItems = [
     icon: (active = false) => (
       <SettingIcon strokeColor={active ? "#9013FE" : "#000"} />
     ),
-    routePath: pathConstants.SETTINGS,
+    routePath: pathConstants.REWARDS,
   },
 
   {

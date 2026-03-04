@@ -76,6 +76,38 @@ const useGetRoutes = () => {
           )
         },
         {
+          path: pathConstants.EXAMS,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.Exams />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.CANDIDATE,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.CandidateConfig />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.CREATE_CANDIDATE,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.CreateCandidate />
+            </RoleGuard>
+          )
+        },
+         {
+          path: pathConstants.RESULT,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.Result />
+            </RoleGuard>
+          )
+        },
+        {
           path: pathConstants.CANDIDATE_DASHBOARD,
           element: (
             <RoleGuard allowedRoles={["candidate"]}>
