@@ -25,7 +25,7 @@ const Result = () => {
             
               <Card
                 key={1}
-                to={pathConstants.ALL_QUESTION}
+                to={pathConstants.CREATE_CANDIDATE}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
@@ -37,7 +37,7 @@ const Result = () => {
 
               <Card
                 key={2}
-                to={pathConstants.QUESTION_CATEGORIES}
+                to={pathConstants.CREATE_CANDIDATE}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
@@ -49,7 +49,7 @@ const Result = () => {
 
               <Card
                 key={3}
-                to={pathConstants.QUESTION_TYPE}
+                to={pathConstants.CREATE_CANDIDATE}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
@@ -61,7 +61,7 @@ const Result = () => {
 
               <Card
                 key={4}
-                to={pathConstants.QUESTION_TYPE}
+                to={pathConstants.CREATE_CANDIDATE}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"

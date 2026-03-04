@@ -5,18 +5,18 @@ import * as yup from "yup";
 const Schema = yup
   .object({
     username: yup.string().required("Username is required"),
-    full_name: yup.string().required("Full name is required"),
+    fullName: yup.string().required("Full name is required"),
   })
   .required();
 
-const Validation = (username, full_name) => {
+const Validation = (username, fullName) => {
   return useForm({
     resolver: yupResolver(Schema),
     shouldFocusError: true,
     mode: "onBlur",
     defaultValues: {
-      username: username || "",
-      full_name: full_name || "",
+      username,
+      fullName,
     },
   });
 };
