@@ -34,10 +34,10 @@ const Login = () => {
           <div className="login-page__container">
             <div className="login-header">
               <h4 className="light-purple--text font-weight-bold">
-                Log in to flowva
+                Redeemer Teap International School,
               </h4>
               <p className="small-text-size">
-                Log in to receive personalized recommendations
+                Log in to your account to access your dashboard.
               </p>
             </div>
             <form onSubmit={handleSubmit(login)} className="login__form">

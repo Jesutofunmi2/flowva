@@ -1,10 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import useAuthUser from "../../hooks/useAuthUser";
+import { adminSidebarItems, candidateSidebarItems } from "../../localdata/appSidebarItems";
+import { ROLES } from "../../helpers";
 
 export const useSidebar = () => {
   const { signOut, displayEmail, displayName, profileImageUrl } = useAuthUser();
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const profileRef = useRef(null);
+  const { role } = useAuthUser();
+  const menuItems =
+    role === ROLES.ADMIN
+      ? adminSidebarItems
+      : role === ROLES.CANDIDATE
+      ? candidateSidebarItems
+      : [];
+
 
   useEffect(() => {
     const handleDocClick = (e) => {
@@ -23,6 +33,7 @@ export const useSidebar = () => {
     profileMenuOpen,
     setProfileMenuOpen,
     profileRef,
+    menuItems,
   };
 };
 

@@ -1,9 +1,15 @@
-import Dashboard from "./Dashboard";  
-import RewardHub from "./RewardHub";  
+import AdminDashboard from "./AdminDashboard"; 
+import CandidateDashboard from "./CandidateDashboard";
+import RewardHub from "./RewardHub"; 
+import CreateAssessment from "./CreateAssessment"; 
+import Question from "./Question";
 
 const appPages = {
-  Dashboard,
+  AdminDashboard,
+  CandidateDashboard,
   RewardHub,
+  CreateAssessment,
+  Question,
 };
 
 export default appPages;

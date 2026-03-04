@@ -7,54 +7,90 @@ const AuthCallback = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
+    const handleAuth = async () => {
       try {
-        let sessionResp;
-        if (typeof supabase.auth.getSessionFromUrl === "function") {
-          sessionResp = await supabase.auth.getSessionFromUrl();
-        } else if (typeof supabase.auth.getSession === "function") {
-          sessionResp = await supabase.auth.getSession();
-        } else {
-          const res = await callSupabase((sb) => sb.auth.getSession());
-          sessionResp = { data: res.data, error: res.error };
-        }
+        const { data: sessionData } = await supabase.auth.getSession();
+        const user = sessionData?.session?.user;
 
-        const data = sessionResp?.data ?? {};
-        const user = data?.session?.user ?? data?.user ?? null;
         if (!user?.id) {
           navigate("/login");
           return;
         }
 
         await callSupabase((sb) =>
-          sb.from("profiles").upsert(
-            { id: user.id, display_name: user.user_metadata?.full_name ?? null },
+          sb.from("profile").upsert(
+            {
+              id: user.id,
+              full_name: user.user_metadata?.full_name ?? null,
+            },
             { onConflict: "id" }
           )
         );
 
+
+         await callSupabase((sb) =>
+          sb.from("profiles").upsert(
+            {
+              id: user.id,
+              display_name: user.user_metadata?.full_name ?? null,
+            },
+            { onConflict: "id" }
+          )
+        );
+
+        /**
+         * ✅ Handle referral
+         */
         const ref = localStorage.getItem("referral");
+
         if (ref) {
           const { data: refProfile } = await callSupabase((sb) =>
-            sb.from("profiles").select("id").eq("referral_code", ref).maybeSingle()
+            sb
+              .from("profiles")
+              .select("id")
+              .eq("referral_code", ref)
+              .maybeSingle()
           );
 
           if (refProfile?.id) {
             await callSupabase((sb) =>
-              sb.from("profiles").update({ referred_by: refProfile.id }).eq("id", user.id)
+              sb
+                .from("profiles")
+                .update({ referred_by: refProfile.id })
+                .eq("id", user.id)
             );
 
-            await callSupabase((sb) => sb.rpc("apply_referral_bonus", { p_new_user: user.id }));
+            await callSupabase((sb) =>
+              sb.rpc("apply_referral_bonus", { p_new_user: user.id })
+            );
           }
 
           localStorage.removeItem("referral");
         }
 
-        navigate("/dashboard");
-      } catch {
+        /**
+         * ✅ Fetch role
+         */
+        const { data: profile } = await callSupabase((sb) =>
+          sb.from("profiles").select("role").eq("id", user.id).single()
+        );
+
+        const role = profile?.role;
+
+        if (role === "admin") {
+          navigate("/admin_dashboard", { replace: true });
+        } else if (role === "candidate") {
+          navigate("/candidate_dashboard", { replace: true });
+        } else {
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error(error);
         navigate("/login");
       }
-    })();
+    };
+
+    handleAuth();
   }, [navigate]);
 
   return <div>Completing sign-in...</div>;

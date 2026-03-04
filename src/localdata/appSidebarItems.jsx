@@ -5,65 +5,94 @@ import {
   DiscoverIcon,
   LibraryIcon,
   TechStackIcon,
-  SubscriptionIcon,
   RewardIcon,
 } from "../assets/svgIcons";
 
-export const appSidebarItems = [
+export const adminSidebarItems = [
   {
     name: "Home",
     key: 0,
     icon: (active = false) => (
-      <HomeIcon strokeColor={active ? "#9013FE" : "#000"} />
+      <HomeIcon strokeColor={active ? "#FFD700" : "#000"} />
     ),
     routePath: pathConstants.DASHBOARD,
   },
   {
-    name: "Discover",
+    name: "Exam Management",
     key: 2,
     icon: (active = false) => (
-      <DiscoverIcon strokeColor={active ? "#9013FE" : "#000"} />
+      <DiscoverIcon strokeColor={active ? "#FFD700" : "#000"} />
     ),
-    routePath: pathConstants.DISCOVER,
+    routePath: pathConstants.EXAMS,
   },
   {
-    name: "Library",
+    name: "Question Bank",
     key: 3,
     icon: (active = false) => (
       <LibraryIcon strokeColor={active ? "#9013FE" : "#000"} />
     ),
-    routePath: pathConstants.LIBRARY,
+    routePath: pathConstants.QUESTION,
   },
   {
-    name: "Tech Stack",
+    name: "Candidates",
     key: 4,
     icon: (active = false) => (
       <TechStackIcon strokeColor={active ? "#9013FE" : "#000"} />
     ),
-    routePath: pathConstants.TECH_STACK,
+    routePath: pathConstants.CANDIDATE,
   },
   {
-    name: "Subscriptions",
-    key: 5,
-    icon: (active = false) => (
-      <SubscriptionIcon strokeColor={active ? "#9013FE" : "#000"} />
-    ),
-    routePath: pathConstants.SUBSCRIPTIONS,
-  },
-  {
-    name: "Rewards",
+    name: "Results & Reports",
     key: 6,
     icon: (active = false) => (
-      <RewardIcon strokeColor={active ? "#9013FE" : "#000"} />
+      <RewardIcon strokeColor={active ? "#FFD700" : "#000"} />
     ),
-    routePath: pathConstants.REWARDS,
+    routePath: pathConstants.RESULT,
   },
   {
-    name: "Settings",
+    name: "Roles & Permissions",
     key: 7,
     icon: (active = false) => (
       <SettingIcon strokeColor={active ? "#9013FE" : "#000"} />
     ),
     routePath: pathConstants.SETTINGS,
+  },
+
+  {
+    name: "System Settings",
+    key: 8,
+    icon: (active = false) => (
+      <SettingIcon strokeColor={active ? "#9013FE" : "#000"} />
+    ),
+    routePath: pathConstants.SETTINGS,
+  },
+];
+
+export const candidateSidebarItems = [
+  {
+    name: "Dashboard",
+    key: 10,
+    icon: (active = false) => (
+      <HomeIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.CANDIDATE_DASHBOARD,
+  },
+
+  {
+    name: "My Exams",
+    key: 11,
+    icon: (active = false) => (
+      <TechStackIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.CANDIDATE_EXAM,
+  },
+
+  {
+    name: "My Results",
+    key: 12,
+    icon: (active = false) => (
+      <TechStackIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.CANDIDATE_RESULT,
   },
 ];

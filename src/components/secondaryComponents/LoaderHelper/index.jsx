@@ -17,7 +17,7 @@ const LoaderHelper = ({ children, isLoading, classNames, action= "Redirecting...
           <img
             src={Images.logo}
             width={"130px"}
-            alt="FlowvaHub"
+            alt="Redeemer Teap International School,Hub"
             className="google-signin__icon"
           />
           <p className="dark--text">{action}</p>

@@ -10,8 +10,8 @@ const Dashboard = () => {
 
   return (
     <SecondaryComponents.MetaSetter
-      title="Flowva Hub | Dashboard"
-      description="View all dashboard activities and statistics on Flowva Hub."
+      title="Redeemer Teap International School, | Dashboard"
+      description="View all dashboard activities and statistics on Redeemer Teap International School,."
     >
       <LoaderHelper
         isLoading={loading}

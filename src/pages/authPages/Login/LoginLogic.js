@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { callSupabase } from "../../../helpers/supabaseWrapper";
+import { pathConstants } from "../../../routes/pathContants";
 
 const LoginLogic = () => {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const LoginLogic = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
-   const login = async () => {
+  const login = async () => {
     setIsLogging(true);
     setErrorMessage(null);
 
@@ -23,8 +24,27 @@ const LoginLogic = () => {
       if (refreshToken) {
         localStorage.setItem("refreshToken", refreshToken);
       }
+      const session = res?.data?.session;
+      const user = session?.user;
+      /**
+       * ✅ Fetch role
+       */
+      const { data: profile } = await callSupabase((sb) =>
+        sb.from("profile").select("role").eq("id", user.id).single()
+      );
 
-      navigate("/dashboard");
+      const role = profile?.role;
+
+      localStorage.setItem("role", role);
+
+      /**
+       * ✅ Redirect by role
+       */
+      if (role === "admin") {
+        navigate(pathConstants.ADMIN_DASHBOARD, { replace: true });
+      } else if (role === "candidate") {
+        navigate(pathConstants.CANDIDATE_DASHBOARD, { replace: true });
+      }
     } catch (err) {
       setErrorMessage(err?.message || "Login failed");
     } finally {
@@ -39,7 +59,7 @@ const LoginLogic = () => {
       const res = await callSupabase((sb) =>
         sb.auth.signInWithOAuth({
           provider: "google",
-          options: { redirectTo: window.location.origin + "/dashboard" },
+          options: { redirectTo: window.location.origin + "/admin_dashboard" },
         })
       );
 
@@ -61,7 +81,7 @@ const LoginLogic = () => {
     navigate,
     isLogging,
     errorMessage,
-    signInWithGoogle
+    signInWithGoogle,
   };
 };
 export default LoginLogic;

@@ -41,7 +41,7 @@ const SignupLogic = () => {
       const res = await callSupabase((sb) =>
         sb.auth.signInWithOAuth({
           provider: "google",
-          options: { redirectTo: window.location.origin + "/dashboard" },
+          options: { redirectTo: window.location.origin + "/admin_dashboard" },
         })
       );
 

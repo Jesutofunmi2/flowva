@@ -7,6 +7,7 @@ import AppPages from "../pages/appPages";
 
 import { AppGuard, OnboardingGuard } from "../components/common";
 import AppLayout from "../layouts/AppLayout";
+import { RoleGuard } from "../hooks/roleGuard";
 
 const useGetRoutes = () => {
   const routes = [
@@ -51,8 +52,36 @@ const useGetRoutes = () => {
       ),
       children: [
         {
-          path: pathConstants.DASHBOARD,
-          element: <AppPages.Dashboard />,
+          path: pathConstants.ADMIN_DASHBOARD,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+              <AppPages.AdminDashboard />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.CREATE_ASSESSMENT,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.CreateAssessment />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.QUESTION,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.Question />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.CANDIDATE_DASHBOARD,
+          element: (
+            <RoleGuard allowedRoles={["candidate"]}>
+              <AppPages.CandidateDashboard />
+            </RoleGuard>
+          ),
         },
         {
           path: pathConstants.REWARDS,
@@ -60,7 +89,6 @@ const useGetRoutes = () => {
         },
       ],
     },
-
     { path: "*", element: <Error404 /> },
   ];
 

@@ -8,7 +8,7 @@ const SpotlightCard = ({
   tag = "Featured",
   title = "Top Tool Spotlight",
   subtitle = "Automate and Optimize Your Schedule",
-  description = "Reclaim.ai is an AI-powered calendar assistant that automatically schedules your tasks, meetings, and breaks to boost productivity. Free to try — earn Flowva Points when you sign up!",
+  description = "Reclaim.ai is an AI-powered calendar assistant that automatically schedules your tasks, meetings, and breaks to boost productivity. Free to try — earn Redeemer Teap International School, CLUBPoints when you sign up!",
   image,
   onPrimary,
   onSecondary,

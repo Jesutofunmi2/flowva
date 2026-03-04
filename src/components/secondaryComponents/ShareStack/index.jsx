@@ -6,7 +6,7 @@ const ShareStack = ({
   title = "Share Your Stack",
   subtitle = "Share your tool stack",
   points = 25,
-  shareText = "Check out my tool stack on Flowva Hub",
+  shareText = "Check out my tool stack on Redeemer Teap International School, CLUBHub",
   shareUrl = window.location.origin,
   onShareSuccess = () => {},
   className = "",

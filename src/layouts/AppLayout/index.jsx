@@ -6,7 +6,7 @@ import HamburgerIcon from "../../assets/svgIcons/HamburgerIcon";
 import CloseIcon from "../../assets/svgIcons/CloseIcon";
 import globalStyles from "../../assets/styles/base/globalPage.module.scss";
 import { BellIcon } from "../../assets/svgIcons";
-import useDashboard from "../../pages/appPages/Dashboard/useDashboard";
+import useDashboard from "../../pages/appPages/AdminDashboard/useDashboard";
 import { getPageTitle } from "../../helpers";
 
 const AppLayout = () => {

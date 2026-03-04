@@ -49,15 +49,23 @@ export const getPageTitle = ({
   const displayName = providedDisplayName ?? "";
 
   const isDashboard =
-    pathname === "/" || pathname === "/app" || pathname.includes("/dashboard");
+    pathname === "/" || pathname === "/app" || pathname.includes("/admin_dashboard");
 
   let titleHtml = null;
   let titleText = "";
 
   if (isDashboard) {
+    const hour = new Date().getHours();
+    const greeting =
+      hour >= 5 && hour < 12
+      ? "Good morning"
+      : hour >= 12 && hour < 18
+      ? "Good afternoon"
+      : "Good evening";
+
     titleHtml = displayName
-      ? `Good morning, <span style="font-weight: 600; color: #9013FE;">${displayName}</span>`
-      : "Good morning";
+      ? `${greeting}, <span style="font-weight: 600; color: #9013FE;">${displayName}</span>`
+      : greeting;
   } else {
     const parts = pathname.split("/").filter(Boolean);
 
@@ -91,4 +99,9 @@ export const getPageTitle = ({
 export const getWeekIndexFromDate = (date = new Date()) => {
   const d = date.getDay();
   return d === 0 ? 6 : d - 1;
+};
+
+export const ROLES = {
+  ADMIN: "admin",
+  CANDIDATE: "candidate",
 };

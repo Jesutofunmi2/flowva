@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import Images from "../../assets/images";
-import { appSidebarItems } from "../../localdata/appSidebarItems";
 import "../AppLayout/AppLayout.scss";
 import { useSidebar } from "./useSidebar";
 
@@ -13,6 +12,7 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
     profileMenuOpen,
     setProfileMenuOpen,
     profileRef,
+    menuItems,
   } = useSidebar();
   return (
     <>
@@ -22,11 +22,11 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
         aria-label="Main"
       >
         <div className="sidebar__top">
-          <img src={Images.logo} alt="FlowvaHub" className="sidebar__logo" />
+          <img src={Images.logo} alt="Redeemer Teap International School,Hub" className="sidebar__logo" />
         </div>
 
         <nav className="sidebar__nav">
-          {appSidebarItems.map(({ key, name, icon, routePath }) => (
+          {menuItems.map(({ key, name, icon, routePath }) => (
             <NavLink
               key={key}
               to={routePath}

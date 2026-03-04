@@ -1,5 +1,5 @@
 import notFoundImage from "./404Img.svg";
-import logo from "./logo.png";
+import logo from "./logo.jpg";
 import GoogleIcon from "./googleIcon.svg";
 import Bell from "./notification-bell.svg";
 import Banner from "./banner.png";

@@ -8,8 +8,8 @@ const MetaSetterLogic = ({ title, description }) => {
   useEffect(() => {
     if (typeof setMetaDetails !== "function") return;
     setMetaDetails({
-      title: title ?? "Flowva Hub",
-      description: description ?? "Flowva Hub - Your Rewards Journey",
+      title: title ?? "Redeemer Teap International School, CLUBHub",
+      description: description ?? "Redeemer Teap International School, CLUBHub - Your Rewards Journey",
     });
   }, [setMetaDetails, title, description]);
 

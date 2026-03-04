@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Error404 = () => {
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
   return (
     <div className="error-page">
       <img
@@ -23,7 +24,11 @@ const Error404 = () => {
       </div>
       <PrimaryComponents.Button
         className="btn btn--primary px-5"
-        onClick={() => navigate(pathConstants?.LOGIN)}
+        onClick={() =>
+          role === "admin"
+            ? navigate(pathConstants?.ADMIN_DASHBOARD)
+            : navigate(pathConstants.CANDIDATE_DASHBOARD)
+        }
       >
         Return to Home
       </PrimaryComponents.Button>
