@@ -4,9 +4,11 @@ import { BankEmptyIcon } from "../../../../../assets/svgIcons";
 import useAllClasses from "./useAllClasses";
 import PrimaryComponents from "../../../../../components/primaryComponents";
 import { pathConstants } from "../../../../../routes/pathContants";
+import { useNavigate } from "react-router-dom";
 
 const AllClasses = () => {
   const { instance } = useAllClasses();
+  const navigate = useNavigate();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     instance;
   return (
@@ -23,7 +25,7 @@ const AllClasses = () => {
               <PrimaryComponents.Button
                 classNames="btn btn--primary smallBtn"
                 onClick={() => {
-                  navigation.navigate(pathConstants.CREATE_CLASS)
+                  navigate(pathConstants.CREATE_CLASS)
                 }}
               >
                 Create New Class

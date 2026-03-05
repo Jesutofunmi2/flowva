@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { callSupabase } from "../../../../../helpers/supabaseWrapper";
+import { useNavigate } from "react-router-dom";
+import { pathConstants } from "../../../../../routes/pathContants";
 
 const useCreateClass = () => {
   const [loading, setLoading] = useState(false);
@@ -7,6 +9,7 @@ const useCreateClass = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   const createClass = async () => {
     try {
@@ -44,6 +47,7 @@ const useCreateClass = () => {
       setMessage("Class created successfully");
        setLoading(false);
        setIsCreating(false);
+       navigate(pathConstants.ALL_CLASSES);
     } catch (err) {
       setErrorMessage("Failed to create class", err?.message);
     } finally {
