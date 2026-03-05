@@ -44,6 +44,8 @@ const LoginLogic = () => {
         navigate(pathConstants.ADMIN_DASHBOARD, { replace: true });
       } else if (role === "candidate") {
         navigate(pathConstants.CANDIDATE_DASHBOARD, { replace: true });
+      } else if (role === "super_admin") {
+        navigate(pathConstants.SUPER_ADMIN_DASHBOARD, { replace: true });
       }
     } catch (err) {
       setErrorMessage(err?.message || "Login failed");

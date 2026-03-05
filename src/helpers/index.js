@@ -49,7 +49,7 @@ export const getPageTitle = ({
   const displayName = providedDisplayName ?? "";
 
   const isDashboard =
-    pathname === "/" || pathname === "/app" || pathname.includes("/admin_dashboard");
+    pathname === "/" || pathname === "/app" || pathname.includes("/admin_dashboard") || pathname.includes("/candidate_dashboard") || pathname.includes("/super_admin_dashboard");
 
   let titleHtml = null;
   let titleText = "";
@@ -104,4 +104,23 @@ export const getWeekIndexFromDate = (date = new Date()) => {
 export const ROLES = {
   ADMIN: "admin",
   CANDIDATE: "candidate",
+  SUPER_ADMIN: "super_admin",
+};
+
+export const defaultDateDisplay = (value) => {
+  if (!value) return "-";
+
+  const date = new Date(value);
+  const day = date.getDate();
+  const month = date.toLocaleString("en-us", { month: "short" });
+  const year = date.getFullYear();
+
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12 || 12;
+  const formattedHours = String(hours).padStart(2, "0");
+
+  return `${day}/${month}/${year} ${formattedHours}:${minutes} ${ampm}`;
 };

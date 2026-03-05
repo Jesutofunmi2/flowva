@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import useAuthUser from "../../hooks/useAuthUser";
-import { adminSidebarItems, candidateSidebarItems } from "../../localdata/appSidebarItems";
+import { adminSidebarItems, candidateSidebarItems, superAdminSidebarItems} from "../../localdata/appSidebarItems";
 import { ROLES } from "../../helpers";
 
 export const useSidebar = () => {
@@ -13,6 +13,8 @@ export const useSidebar = () => {
       ? adminSidebarItems
       : role === ROLES.CANDIDATE
       ? candidateSidebarItems
+      : role === ROLES.SUPER_ADMIN
+      ? superAdminSidebarItems
       : [];
 
 

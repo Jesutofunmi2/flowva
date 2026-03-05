@@ -24,6 +24,8 @@ import FacebookIcon from "./FacebookIcon";
 import TwitterIcon from "./TwitterIcon";
 import WhatsappIcon from "./WhatsappIcon";
 import LinkedlnIcon from "./LinkedlnIcon"
+import BankEmptyIcon  from "./BankEmptyIcon";
+import DeleteIcon from "./DeleteIcon";
 
 export {
   ExclamationCirlce,
@@ -52,6 +54,8 @@ export {
   TwitterIcon,
   WhatsappIcon,
   LinkedlnIcon,
+  BankEmptyIcon,
+  DeleteIcon
 };
 
 export const ICONS = {
@@ -81,6 +85,8 @@ export const ICONS = {
   TwitterIcon,
   WhatsappIcon,
   LinkedlnIcon,
+  BankEmptyIcon,
+  DeleteIcon
 };
 
 export default ICONS;

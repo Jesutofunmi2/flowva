@@ -49,14 +49,14 @@ const AppLayout = () => {
                 className={globalStyles.pagePaddings}
                 style={{ display: "inline-block" }}
               >
-                <h6
+                <h4
                   className="app-layout__title"
                   {...(titleHtml
                     ? { dangerouslySetInnerHTML: { __html: titleHtml } }
                     : {})}
                 >
                   {!titleHtml ? titleText : null}
-                </h6>
+                </h4>
               </div>
             </div>
 

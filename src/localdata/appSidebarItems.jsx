@@ -34,6 +34,22 @@ export const adminSidebarItems = [
     routePath: pathConstants.QUESTION,
   },
   {
+     name: "Class Management",
+     key: 5,
+     icon: (active = false) => (
+       <TechStackIcon strokeColor={active ? "#9013FE" : "#000"} />
+     ),
+     routePath: pathConstants.CLASS,
+  },
+  {
+    name: "Subject Management",
+    key: 9,
+    icon: (active = false) => (
+      <TechStackIcon strokeColor={active ? "#9013FE" : "#000"} />
+    ),
+    routePath: pathConstants.SUBJECT,
+  },
+  {
     name: "Candidates",
     key: 4,
     icon: (active = false) => (
@@ -95,4 +111,31 @@ export const candidateSidebarItems = [
     ),
     routePath: pathConstants.CANDIDATE_RESULT,
   },
+];
+
+export const superAdminSidebarItems = [
+  {
+    name: "Dashboard",
+    key: 17,
+    icon: (active = false) => (
+      <HomeIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.SUPER_ADMIN_DASHBOARD,
+  },
+  {
+    name: "User Management",
+    key: 18,
+    icon: (active = false) => (
+      <TechStackIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.SUPER_ADMIN_USER,
+  },
+  {
+    name: "School Management",
+    key: 19,
+    icon: (active = false) => (
+      <TechStackIcon strokeColor={active ? "#FFD700" : "#000"} />
+    ),
+    routePath: pathConstants.CREATE_SCHOOL,
+  }
 ];

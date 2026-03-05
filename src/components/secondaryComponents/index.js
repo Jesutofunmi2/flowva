@@ -12,6 +12,7 @@ import SpotlightCard from "./SpotlightCard";
 import ReferralCard from "./ReferralCard";
 import ShareStack from "./ShareStack";
 import ReferralShareCard from "./ReferralShareCard";
+import TableHelper from "./TableHelper";
 
 
 const secondaryComponents = {
@@ -29,6 +30,7 @@ const secondaryComponents = {
   ReferralCard,
   ShareStack,
   ReferralShareCard,
+  TableHelper,
 };
 
 export default secondaryComponents;

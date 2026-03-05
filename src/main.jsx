@@ -27,23 +27,23 @@ export function AppWrapper() {
     return () => subscription?.unsubscribe?.();
   }, []);
 
-  useEffect(() => {
-  if (!navigator.onLine) {
-    window.location.href = "/onboarding";
-    return;
-  }
+//   useEffect(() => {
+//   if (!navigator.onLine) {
+//     window.location.href = "/onboarding";
+//     return;
+//   }
 
-  const onOffline = () => window.location.href = "/onboarding";
-  const onOnline = () => {};
+//   const onOffline = () => window.location.href = "/onboarding";
+//   const onOnline = () => {};
 
-  window.addEventListener("offline", onOffline);
-  window.addEventListener("online", onOnline);
+//   window.addEventListener("offline", onOffline);
+//   window.addEventListener("online", onOnline);
 
-  return () => {
-    window.removeEventListener("offline", onOffline);
-    window.removeEventListener("online", onOnline);
-  };
-}, []);
+//   return () => {
+//     window.removeEventListener("offline", onOffline);
+//     window.removeEventListener("online", onOnline);
+//   };
+// }, []);
   return <App />;
 }
 

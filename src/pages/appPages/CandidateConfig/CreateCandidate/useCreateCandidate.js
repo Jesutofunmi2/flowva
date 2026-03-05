@@ -4,65 +4,54 @@ import { callSupabase } from "../../../../helpers/supabaseWrapper";
 const useCreateCandidate = () => {
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("12345678");
+  const [confirmPassword, setConfirmPassword] = useState("12345678");
 
   const [message, setMessage] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const createUser = async () => {
-    try {
-      setIsCreating(true);
-      setErrorMessage(null);
+  try {
+    setIsCreating(true);
 
-      if (password !== confirmPassword) {
-        setErrorMessage("Passwords do not match");
-        return;
-      }
+    // get logged in user
+    const { data: sessionData } = await callSupabase((sb) =>
+      sb.auth.getUser()
+    );
 
-      // 🔥 Generate internal email
-      const fakeEmail = `${username}@school.local`;
+    const userId = sessionData?.user?.id;
 
-      // ⚠️ IMPORTANT:
-      // This only works if using admin API (server-side)
-      const { data, error } = await callSupabase((sb) =>
-        sb.auth.signUp({
-        email: fakeEmail,
-        password,
-      }));
+    // get admin profile
+    const { data: adminProfile } = await callSupabase((sb) =>
+      sb
+        .from("profile")
+        .select("school_id")
+        .eq("id", userId)
+        .single()
+    );
 
-      if (error) throw error;
+    const schoolId = adminProfile.school_id;
 
-      const userId = data.user.id;
+    // create candidate
+    const { data: candidate } = await callSupabase((sb) =>
+      sb
+        .from("candidates")
+        .insert({
+          username,
+          full_name: fullName,
+          password,
+          school_id: schoolId,
+        })
+    );
 
-      // Insert into profiles
-      await callSupabase((sb) =>
-        sb.from("profile").insert({
-        id: userId,
-        username,
-        full_name: fullName,
-        role: "candidate",
-      }));
-
-      // Insert into candidates table
-      await callSupabase((sb) =>
-        sb.from("candidates").insert({
-        user_id: userId,
-      }));
-
-      setMessage("Candidate created successfully");
-      setUsername("");
-      setFullName("");
-      setPassword("");
-      setConfirmPassword("");
-
-    } catch (err) {
-      setErrorMessage(err.message);
-    } finally {
-      setIsCreating(false);
-    }
-  };
+    setMessage("Candidate created successfully");
+  } catch (err) {
+    setErrorMessage(err.message);
+  } finally {
+    setIsCreating(false);
+  }
+};
 
   return {
     username,

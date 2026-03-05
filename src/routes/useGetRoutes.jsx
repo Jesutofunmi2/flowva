@@ -51,6 +51,61 @@ const useGetRoutes = () => {
         </AppGuard>
       ),
       children: [
+         {
+          path: pathConstants.SUPER_ADMIN_DASHBOARD,
+          element: (
+            <RoleGuard allowedRoles={["super_admin"]}>
+              <AppPages.SuperAdminDashboard />
+            </RoleGuard>
+          ),
+        },{
+          path: pathConstants.CREATE_SCHOOL,
+          element: (
+            <RoleGuard allowedRoles={["super_admin"]}>
+              <AppPages.CreateSchool />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.SUPER_ADMIN_USER,
+          element: (
+            <RoleGuard allowedRoles={["super_admin"]}>
+              <AppPages.SuperAdminUser />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.CLASS,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+              <AppPages.ClassManagement />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.SUBJECT,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+              <AppPages.SubjectManagement />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.CREATE_CLASS,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+              <AppPages.CreateClass />
+            </RoleGuard>
+          ),
+        },
+        {
+          path: pathConstants.ALL_CLASSES,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+              <AppPages.AllClasses />
+            </RoleGuard>
+          ),
+        },
         {
           path: pathConstants.ADMIN_DASHBOARD,
           element: (

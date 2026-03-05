@@ -1,4 +1,3 @@
-import React from "react";
 import LoaderHelper from "../../../../components/secondaryComponents/LoaderHelper";
 import globalStyles from "../../../../assets/styles/base/globalPage.module.scss";
 import Validation from "./Validation";
@@ -22,7 +21,7 @@ const CreateCandidate = () => {
   const { register, handleSubmit, control } = Validation(username, fullName);
   return (
     <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Candidate"
+      title="Redeemer Teap International School, | Create Candidate"
       description="View all dashboard activities and statistics on Redeemer Teap International School,."
     >
       <LoaderHelper
@@ -93,7 +92,7 @@ const CreateCandidate = () => {
                 isLoading={isCreating}
                 loadingText="Signing Up..."
               >
-                Create User
+                Create
               </PrimaryComponents.Button>
             </form>
           </div>
