@@ -5,8 +5,10 @@ import globalStyles from "../../../../assets/styles/base/globalPage.module.scss"
 import SecondaryComponents from "../../../../components/secondaryComponents";
 import { pathConstants } from "../../../../routes/pathContants";
 import ICONS from "../../../../assets/svgIcons";
+import useAllSubject from './AllSubjects/useAllSubject';
 
 const SubjectManagement = () => {
+  const { subjects } = useAllSubject();
   return (
      <SecondaryComponents.MetaSetter
       title="Redeemer Teap International School, | Subject Management"
@@ -25,24 +27,23 @@ const SubjectManagement = () => {
             
               <Card
                 key={1}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={pathConstants.CREATE_SUBJECT}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
                 title={"Create Subject"}
-                count={0}
                 description={"Create Subject"}
                 ctaText="View"
               />
 
               <Card
                 key={2}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={pathConstants.ALL_SUBJECTS}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
                 title={"All Subjects"}
-                count={0}
+                count={subjects?.length}
                 description={"All Subjects"}
                 ctaText="View"
               />

@@ -29,24 +29,45 @@ const LoginLogic = () => {
       /**
        * ✅ Fetch role
        */
-      const { data: profile } = await callSupabase((sb) =>
-        sb.from("profile").select("role").eq("id", user.id).single()
-      );
+      if (user) {
+        const { data: profile } = await callSupabase((sb) =>
+          sb.from("profile").select("role").eq("id", user.id).single()
+        );
 
-      const role = profile?.role;
+        const role = profile?.role;
 
-      localStorage.setItem("role", role);
+        localStorage.setItem("role", role);
+
+        if (role === "admin") {
+          navigate(pathConstants.ADMIN_DASHBOARD, { replace: true });
+          return;
+        }
+
+        if (role === "super_admin") {
+          navigate(pathConstants.SUPER_ADMIN_DASHBOARD, { replace: true });
+          return;
+        }
+      }
 
       /**
-       * ✅ Redirect by role
+       * 2️⃣ Candidate Login (username + password)
        */
-      if (role === "admin") {
-        navigate(pathConstants.ADMIN_DASHBOARD, { replace: true });
-      } else if (role === "candidate") {
-        navigate(pathConstants.CANDIDATE_DASHBOARD, { replace: true });
-      } else if (role === "super_admin") {
-        navigate(pathConstants.SUPER_ADMIN_DASHBOARD, { replace: true });
+      const { data: candidate } = await callSupabase((sb) =>
+        sb.from("candidates").select("*").eq("username", email).single()
+      );
+
+      if (!candidate) {
+        throw new Error("Invalid username or password");
       }
+
+      if (candidate.password !== password) {
+        throw new Error("Invalid username or password");
+      }
+
+      localStorage.setItem("role", "candidate");
+      localStorage.setItem("candidate_id", candidate.id);
+
+      navigate(pathConstants.CANDIDATE_DASHBOARD, { replace: true });
     } catch (err) {
       setErrorMessage(err?.message || "Login failed");
     } finally {
@@ -77,12 +98,12 @@ const LoginLogic = () => {
   return {
     email,
     password,
+    isLogging,
+    errorMessage,
     login,
     setPassword,
     setEmail,
     navigate,
-    isLogging,
-    errorMessage,
     signInWithGoogle,
   };
 };

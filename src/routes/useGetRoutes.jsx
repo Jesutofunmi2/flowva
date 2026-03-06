@@ -123,6 +123,38 @@ const useGetRoutes = () => {
           )
         },
         {
+          path: pathConstants.UPDATE_CLASS({classId: ":classId"}),
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.UpdateClass />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.CREATE_SUBJECT,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.CreateSubject />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.ALL_SUBJECTS,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.AllSubjects />
+            </RoleGuard>
+          )
+        },
+        {
+          path: pathConstants.UPDATE_SUBJECT({subjectId: ":subjectId"}),
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.UpdateSubject />
+            </RoleGuard>
+          )
+        },
+        {
           path: pathConstants.QUESTION,
           element: (
             <RoleGuard allowedRoles={["admin"]}>

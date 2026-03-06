@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="date-input"
+>
+  <label
+    data-testid="label"
+    htmlFor=""
+  >
+    <span>
+      Date
+    </span>
+  </label>
+  <input
+    className="date false"
+    data-testid="input"
+    disabled={false}
+    id=""
+    name=""
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="YYYY-MM-DD"
+    type="date"
+  />
+  <p
+    className="error-message text-danger "
+    data-testid="error-message"
+  />
+</div>
+`;

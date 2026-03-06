@@ -1,3 +1,5 @@
+import { callSupabase } from "./supabaseWrapper";
+
 export const getUrlQuerysection = () => {
   let queries = window.location.search;
   return queries;
@@ -123,4 +125,24 @@ export const defaultDateDisplay = (value) => {
   const formattedHours = String(hours).padStart(2, "0");
 
   return `${day}/${month}/${year} ${formattedHours}:${minutes} ${ampm}`;
+};
+
+export const generateUsername = async (schoolId) => {
+  const year = new Date().getFullYear();
+
+  const { data, error } = await callSupabase((sb) =>
+    sb
+      .from("candidates")
+      .select("username")
+      .eq("school_id", schoolId)
+      .like("username", `RED/${year}/%`)
+  );
+
+  if (error) throw error;
+
+  const nextNumber = (data?.length || 0) + 1;
+
+  const padded = String(nextNumber).padStart(3, "0");
+
+  return `RED/${year}/${padded}`;
 };

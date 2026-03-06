@@ -7,54 +7,54 @@ import { DeleteIcon } from "../../../../../assets/svgIcons";
 import { pathConstants } from "../../../../../routes/pathContants";
 import { useNavigate } from "react-router-dom";
 
-const useAllClasses = () => {
-  const [classes, setClasses] = useState([]);
+const useAllSubject = () => {
+  const [subjects, setSubjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const deleteClass = async (classId) => {
+  const deleteSubject = async (subjectId) => {
     setIsLoading(true);
     setError(null);
 
     try {
       const { error } = await callSupabase((sb) =>
-        sb.from("classes").delete().eq("id", classId)
+        sb.from("subjects").delete().eq("id", subjectId)
       );
 
       if (error) {
         throw error;
       }
 
-      // Remove the deleted class from the state
-      setClasses((prevClasses) =>
-        prevClasses.filter((cls) => cls.id !== classId)
+      // Remove the deleted subject from the state
+      setSubjects((prevSubjects) =>
+        prevSubjects.filter((sub) => sub.id !== subjectId)
       );
     } catch (err) {
-      setError(err.message || "Failed to delete class");
+      setError(err.message || "Failed to delete subject");
     } finally {
       setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    const fetchClasses = async () => {
+    const fetchSubjects = async () => {
       setIsLoading(true);
 
       const { data, error } = await callSupabase((sb) =>
-        sb.from("classes").select("*")
+        sb.from("subjects").select("*")
       );
 
       if (error) {
         console.error(error);
         setError(error.message);
       } else {
-        setClasses(data || []);
+        setSubjects(data || []);
       }
 
       setIsLoading(false);
     };
-    fetchClasses();
+    fetchSubjects();
   }, []);
 
   const columns = useMemo(
@@ -85,7 +85,7 @@ const useAllClasses = () => {
               classNames="btn btn--primary smallBtn"
               isDisabled={!row?.original}
               onClick={() => {
-                navigate(pathConstants.UPDATE_CLASS({ classId: row?.original?.id }));
+                navigate(pathConstants.UPDATE_SUBJECT({ subjectId: row?.original?.id }));
               }}
             >
               Update
@@ -94,7 +94,7 @@ const useAllClasses = () => {
             <PrimaryComponents.Button
               classNames="btn btn--outline smallBtn"
               onClick={() => {
-                deleteClass(row?.original?.id);
+                deleteSubject(row?.original?.id);
               }}
             >
               <DeleteIcon type="menu" />
@@ -108,15 +108,15 @@ const useAllClasses = () => {
 
    const instance = useTable({
     columns,
-    data: classes || [],
+    data: subjects || [],
   });
 
   return {
     instance,
-    classes,
+    subjects,
     isLoading,
     error,
   };
 };
 
-export default useAllClasses;
+export default useAllSubject;

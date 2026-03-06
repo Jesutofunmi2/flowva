@@ -1,0 +1,73 @@
+@use "../../../assets/styles/base/variables" as vars;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "sass:color" as color;
+
+.custom-dropdown {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    // border: vars.input-border;
+    border-radius: 4px !important;
+    min-height: 50px;
+    // background-color: #eaeaea;
+
+    @include mixins.respond-to("tablet") {
+      min-height: 42px;
+    }
+  }
+  &__label {
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: vars.$dark-color;
+    white-space: nowrap;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__select {
+    width: 100%;
+    color: vars.$dark-color !important;
+    &__control {
+      display: flex;
+      align-items: center;
+      border: vars.$input-border;
+      border-radius: 4px !important;
+      @include mixins.respond-to("tablet") {
+        min-height: 42px !important;
+      }
+      background: #f3f1fc;
+
+      &:hover {
+        border-color: vars.$purple-color;
+      }
+
+      &:focus {
+        border-color: vars.$purple-color;
+      }
+    }
+
+    &__indicators {
+      .custom-dropdown__select__indicator-separator {
+        display: none !important;
+      }
+    }
+
+    &__input {
+      outline: none !important;
+    }
+  }
+
+  .error-message {
+    font-size: 13px;
+    visibility: hidden;
+    display: flex;
+    margin-top: 2px;
+    min-height: 15px;
+    color: red;
+
+    &.show {
+      visibility: visible;
+    }
+  }
+}

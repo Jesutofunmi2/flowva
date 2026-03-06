@@ -1,9 +1,9 @@
-import LoaderHelper from "../../../components/secondaryComponents/LoaderHelper";
-import Card from "../../../components/secondaryComponents/Card";
-import globalStyles from "../../../assets/styles/base/globalPage.module.scss";
-import SecondaryComponents from "../../../components/secondaryComponents";
-import { pathConstants } from "../../../routes/pathContants";
-import ICONS from "../../../assets/svgIcons";
+import LoaderHelper from "../../../../components/secondaryComponents/LoaderHelper";
+import Card from "../../../../components/secondaryComponents/Card";
+import globalStyles from "../../../../assets/styles/base/globalPage.module.scss";
+import SecondaryComponents from "../../../../components/secondaryComponents";
+import { pathConstants } from "../../../../routes/pathContants";
+import ICONS from "../../../../assets/svgIcons";
 
 
  const CandidateConfig = () => {
