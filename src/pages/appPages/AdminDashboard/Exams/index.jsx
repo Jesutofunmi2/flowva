@@ -1,15 +1,15 @@
-import LoaderHelper from "../../../components/secondaryComponents/LoaderHelper";
-import Card from "../../../components/secondaryComponents/Card";
-import globalStyles from "../../../assets/styles/base/globalPage.module.scss";
-import SecondaryComponents from "../../../components/secondaryComponents";
-import { pathConstants } from "../../../routes/pathContants";
-import ICONS from "../../../assets/svgIcons";
+import React from 'react'
+import LoaderHelper from "../../../../components/secondaryComponents/LoaderHelper";
+import Card from "../../../../components/secondaryComponents/Card";
+import globalStyles from "../../../../assets/styles/base/globalPage.module.scss";
+import SecondaryComponents from "../../../../components/secondaryComponents";
+import { pathConstants } from "../../../../routes/pathContants";
+import ICONS from "../../../../assets/svgIcons";
 
-const Question = () => {
-
+const Exams = () => {
   return (
-    <SecondaryComponents.MetaSetter
-      title="Test Engine / Assessment Platform Solution, | Question"
+     <SecondaryComponents.MetaSetter
+      title="Test Engine / Assessment Platform Solution, | Exam"
       description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
       <LoaderHelper
@@ -21,51 +21,53 @@ const Question = () => {
           className={globalStyles.gridDetailsView}
           style={{ marginTop: "-30px" }}
         >
+          
+            
               <Card
                 key={1}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={"#"}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"All Question"}
+                title={"Create Exam"}
                 count={0}
-                description={"All Question"}
+                description={"Create Exam"}
                 ctaText="View"
               />
 
               <Card
                 key={2}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={"#"}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Question Categories"}
+                title={"All Exams"}
                 count={0}
-                description={"Question Categories"}
+                description={"All Exams"}
                 ctaText="View"
               />
 
               <Card
                 key={3}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={"#"}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Question Type"}
+                title={"Schedule Exam"}
                 count={0}
-                description={"Question Type"}
+                description={"Schedule Exam"}
                 ctaText="View"
               />
 
               <Card
                 key={4}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={"#"}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Bulk Upload Questions"}
+                title={"Exam Settings"}
                 count={0}
-                description={"Bulk Upload Questions"}
+                description={"Exam Settings"}
                 ctaText="View"
               />
         
@@ -73,7 +75,7 @@ const Question = () => {
         </div>
       </LoaderHelper>
     </SecondaryComponents.MetaSetter>
-  );
-};
+  )
+}
 
-export default Question;
+export default Exams

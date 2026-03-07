@@ -2,8 +2,8 @@ import AdminDashboard from "./AdminDashboard";
 import CandidateDashboard from "./CandidateDashboard";
 import RewardHub from "./RewardHub"; 
 import CreateAssessment from "./CreateAssessment"; 
-import Question from "./Question";
-import Exams from "./Exams";
+import Question from "./AdminDashboard/Question";
+import Exams from "./AdminDashboard/Exams";
 import CandidateConfig from "./AdminDashboard/Student";
 import Result from "./Results";
 import CreateCandidate from "./AdminDashboard/Student/CreateStudent";
@@ -23,6 +23,7 @@ import UpdateSubject from "./AdminDashboard/Subjects/UpdateSubject";
 import EditStudent from "./AdminDashboard/Student/EditStudent";
 import AllStudents from "./AdminDashboard/Student/AllStudent/allStudent";
 import useAllStudents from "./AdminDashboard/Student/AllStudent/useAllStudents";
+import AddQuestion from "./AdminDashboard/Question/AddQuestion";
 
 const appPages = {
   AdminDashboard,
@@ -50,6 +51,7 @@ const appPages = {
   EditStudent,
   AllStudents,
   useAllStudents,
+  AddQuestion,
 };
 
 export default appPages;

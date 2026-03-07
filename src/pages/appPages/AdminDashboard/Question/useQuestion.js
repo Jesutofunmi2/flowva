@@ -1,7 +1,7 @@
 import React from 'react'
-import useAuthUser from '../../../hooks/useAuthUser';
+import useAuthUser from '../../../../../hooks/useAuthUser';
 
-export const useExam = () => {
+export const useQuestion = () => {
        const { loading: authLoading, displayName, user } = useAuthUser();
   return {
      authLoading,

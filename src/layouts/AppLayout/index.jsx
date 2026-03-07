@@ -11,7 +11,6 @@ import useDashboard from "../../pages/appPages/AdminDashboard/useDashboard";
 const AppLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { displayName, candidate, profileImageUrl } = useDashboard();
-  console.log(candidate);
 
   return (
     <div className={`app-layout ${sidebarOpen ? "is-sidebar-open" : ""}`}>

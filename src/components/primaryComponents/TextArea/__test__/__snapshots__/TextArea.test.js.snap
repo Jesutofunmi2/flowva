@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="text-area"
+>
+  <label
+    data-testid="label"
+    htmlFor=""
+  >
+    <span>
+      Description
+    </span>
+  </label>
+  <textarea
+    className=" false"
+    data-testid="input"
+    defaultValue=""
+    disabled={false}
+    id=""
+    name=""
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    type="text"
+  />
+  <p
+    className="error-message text-danger "
+    data-testid="error-message"
+  />
+</div>
+`;

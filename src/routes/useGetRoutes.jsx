@@ -206,6 +206,14 @@ const useGetRoutes = () => {
             </RoleGuard>
           )
         },
+        {
+          path: pathConstants.ADD_QUESTION,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.AddQuestion />
+            </RoleGuard>
+          )
+        },
          {
           path: pathConstants.RESULT,
           element: (
