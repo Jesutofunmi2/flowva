@@ -1,32 +1,32 @@
-@import "../../../assets/styles/base/variables";
+@use "../../../assets/styles/base/variables" as vars;
 
 .text-area {
   textarea {
     width: 100%;
     min-height: 100px;
     border-radius: 4px;
-    border: 0.75px solid $input-border-color;
+    border: 0.75px solid vars.$input-border-color;
     outline: none;
     padding: 18px 16px 0 16px;
     resize: none;
 
     &:hover {
-      border-color: $purple-color;
+      border-color: vars.$purple-color;
     }
 
     &:focus {
-      border-color: $purple-color;
+      border-color: vars.$purple-color;
     }
 
     &:disabled {
       cursor: not-allowed;
       background: rgba(0, 0, 0, 0.05);
       color: -internal-light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
-      border-color: $input-border-color;
+      border-color: vars.$input-border-color;
     }
 
     &.error-border {
-      border-color: $danger-color;
+      border-color: vars.$danger-color;
     }
   }
 
