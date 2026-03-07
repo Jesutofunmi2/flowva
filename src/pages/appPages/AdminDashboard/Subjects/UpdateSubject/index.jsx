@@ -16,8 +16,8 @@ const UpdateSubject = () => {
       } = Validation(name);
   return (
     <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Update Subject"
-      description="View all dashboard activities and statistics on Redeemer Teap International School,."
+      title="Test Engine / Assessment Platform Solution, | Update Subject"
+      description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
         <div className="login-page">
           <div className="login-page__container">

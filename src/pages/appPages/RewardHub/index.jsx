@@ -19,8 +19,8 @@ const RewardHub = () => {
   } = useRewardHub();
   return (
     <MetaSetter
-      title="Redeemer Teap International School, CLUBHub | Reward Hub"
-      description="Explore and manage your rewards on Redeemer Teap International School, CLUBHub."
+      title="Test Engine / Assessment Platform Solution, CLUBHub | Reward Hub"
+      description="Explore and manage your rewards on Test Engine / Assessment Platform Solution, CLUBHub."
     >
       <SecondaryComponents.RewardHeading>
         Your Rewards Journey
@@ -49,7 +49,7 @@ const RewardHub = () => {
           title="Top Tool Spotlight"
           subtitle="Reclaim"
           description="Reclaim is an AI-powered calendar assistant..."
-          image="https://api.Redeemer Teap International School,hub.com/storage/v1/object/public/icons/reclaim.png"
+          image="https://api.Test Engine / Assessment Platform Solution,hub.com/storage/v1/object/public/icons/reclaim.png"
         />
       </div>
       <SecondaryComponents.RewardHeading>
@@ -63,8 +63,8 @@ const RewardHub = () => {
         />
         <SecondaryComponents.ShareStack
           points={25}
-          shareText="Check out my stack on Redeemer Teap International School, CLUBHub!"
-          shareUrl="https://app.Redeemer Teap International School,hub.com/my-stack"
+          shareText="Check out my stack on Test Engine / Assessment Platform Solution, CLUBHub!"
+          shareUrl="https://app.Test Engine / Assessment Platform Solution,hub.com/my-stack"
           onShareSuccess={() => {
             SecondaryComponents.ToastHelper.success(
               "Thanks for sharing! You've earned 25 points."

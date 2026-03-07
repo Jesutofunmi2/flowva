@@ -67,14 +67,13 @@ const useEditStudent = () => {
             photo_url: photoUrl,
             password,
           })
-          .eq("id", candidateId)
+          .eq("user_id", candidateId)
           .select()
-          .single()
       );
 
       if (error) throw error;
 
-      console.log("Student updated:", data);
+      console.log("Student updated:", data, error);
 
       setMessage("Student updated successfully");
     } catch (err) {
@@ -135,19 +134,19 @@ const useEditStudent = () => {
     const fetchStudentDetails = async () => {
       try {
         const { data, error } = await callSupabase((sb) =>
-          sb.from("candidates").select("*").eq("id", candidateId).single()
+          sb.from("candidates").select("*").eq("user_id", candidateId).single()
         );
 
         if (error) throw error;
 
         if (data) {
-          setUsername(data.username);
-          setFullName(data.full_name);
-          setClassName(data.class_id);
-          setGender(data.gender);
-          setDateOfBirth(data.date_of_birth);
-          setSession(data.session);
-          setPassportPreview(data.photo_url);
+          setUsername(data?.username);
+          setFullName(data?.full_name);
+          setClassName(data?.class_id);
+          setGender(data?.gender);
+          setDateOfBirth(data?.date_of_birth);
+          setSession(data?.session);
+          setPassportPreview(data?.photo_url);
         }
       } catch (err) {
         console.error("Error fetching student details:", err);

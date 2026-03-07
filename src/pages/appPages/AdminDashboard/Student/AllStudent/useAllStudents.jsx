@@ -23,13 +23,13 @@ const useAllStudents = () => {
 
     try {
       const { error } = await callSupabase((sb) =>
-        sb.from("candidates").delete().eq("id", studentId)
+        sb.from("candidates").delete().eq("user_id", studentId)
       );
 
       if (error) throw error;
 
       setStudents((prev) =>
-        prev.filter((student) => student.id !== studentId)
+        prev.filter((student) => student.user_id !== studentId)
       );
     } catch (err) {
       setError(err.message || "Failed to delete student");
@@ -142,7 +142,7 @@ const useAllStudents = () => {
               onClick={() => {
                 navigate(
                   pathConstants.UPDATE_CANDIDATE({
-                    candidateId: row?.original?.id,
+                    candidateId: row?.original?.user_id,
                   })
                 );
               }}
@@ -152,7 +152,7 @@ const useAllStudents = () => {
 
             <PrimaryComponents.Button
               classNames="btn btn--outline smallBtn"
-              onClick={() => deleteStudent(row?.original?.id)}
+              onClick={() => deleteStudent(row?.original?.user_id)}
             >
               <DeleteIcon type="menu" />
             </PrimaryComponents.Button>

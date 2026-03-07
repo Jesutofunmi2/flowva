@@ -39,6 +39,10 @@ const useGetRoutes = () => {
           path: pathConstants.RESET_PASSWORD_CALLBACK,
           element: <AuthPages.ResetPasswordCallback />,
         },
+        {
+          path: pathConstants.STUDENT_LOGIN,
+          element: <AuthPages.StudentLogin />
+        }
       ],
     },
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { callSupabase } from "../../../../../helpers/supabaseWrapper";
 import { supabase } from "../../../../../hooks/supabaseClient";
-import { generateUsername } from "../../../../../helpers";
+import { generateUsername, ROLES } from "../../../../../helpers";
 
 const useCreateCandidate = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +12,7 @@ const useCreateCandidate = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [session, setSession] = useState("");
   const [password, setPassword] = useState("12345678");
+
   const [passport, setPassport] = useState(null);
   const [passportPreview, setPassportPreview] = useState(null);
 
@@ -19,97 +20,117 @@ const useCreateCandidate = () => {
   const [isCreating, setIsCreating] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const createUser = async () => {
-    try {
-      setIsCreating(true);
-      setErrorMessage(null);
+const createUser = async () => {
+  try {
+    setIsCreating(true);
+    setErrorMessage(null);
 
-      let photoUrl = null;
+    // 1️⃣ Save admin session
+    const {
+      data: { session: adminSession },
+    } = await supabase.auth.getSession();
 
-      // upload passport
-      if (passport) {
-        const fileName = `${Date.now()}-${passport.name}`;
+    if (!adminSession) throw new Error("Admin session not found");
 
-        const { data: uploadData, error: uploadError } = await callSupabase(
-          (sb) =>
-            sb.storage.from("student-passports").upload(fileName, passport)
-        );
+    let photoUrl = null;
 
-        if (uploadError) throw uploadError;
+    // 2️⃣ Upload passport
+    if (passport) {
+      const fileName = `${Date.now()}-${passport.name}`;
 
-        console.log("Upload data:", uploadData);
-
-        // get public url (no await needed)
-        const { data } = supabase.storage
-          .from("student-passports")
-          .getPublicUrl(uploadData.path);
-
-        photoUrl = data.publicUrl;
-
-        console.log("Public URL:", photoUrl);
-      }
-
-      // get logged in user
-      const { data: userData, error: userError } = await callSupabase((sb) =>
-        sb.auth.getUser()
+      const { data: uploadData, error: uploadError } = await callSupabase(
+        (sb) => sb.storage.from("student-passports").upload(fileName, passport)
       );
 
-      if (userError) throw userError;
+      if (uploadError) throw uploadError;
 
-      const userId = userData?.user?.id;
+      const { data } = supabase.storage
+        .from("student-passports")
+        .getPublicUrl(uploadData.path);
 
-      if (!userId) {
-        throw new Error("User not authenticated");
-      }
-
-      // get admin profile
-      const { data: adminProfile, error: profileError } = await callSupabase(
-        (sb) => sb.from("profile").select("school_id").eq("id", userId).single()
-      );
-
-      if (profileError) throw profileError;
-
-      const schoolId = adminProfile?.school_id;
-
-      if (!schoolId) {
-        throw new Error("School not found for this admin");
-      }
-
-      const usernameId = await generateUsername(schoolId);
-      setUsername(usernameId);
-
-      // create candidate
-      const { data: candidate, error: insertError } = await callSupabase((sb) =>
-        sb
-          .from("candidates")
-          .insert({
-            username: usernameId,
-            full_name: fullName,
-            password,
-            school_id: schoolId,
-            class_id: className,
-            gender,
-            date_of_birth: dateOfBirth,
-            session,
-            photo_url: photoUrl,
-          })
-          .select()
-          .single()
-      );
-
-      if (insertError) throw insertError;
-
-      console.log("Candidate created:", candidate);
-
-      setMessage("Candidate created successfully");
-    } catch (err) {
-      console.error(err);
-      setErrorMessage(err.message);
-    } finally {
-      setIsCreating(false);
+      photoUrl = data.publicUrl;
     }
-  };
 
+    // 3️⃣ Get admin user
+    const { data: userData } = await callSupabase((sb) => sb.auth.getUser());
+
+    const adminId = userData?.user?.id;
+
+    if (!adminId) throw new Error("Admin not authenticated");
+
+    // 4️⃣ Get admin school
+    const { data: adminProfile } = await callSupabase((sb) =>
+      sb.from("profile").select("school_id").eq("id", adminId).single()
+    );
+
+    const schoolId = adminProfile?.school_id;
+
+    if (!schoolId) throw new Error("School not found for this admin");
+
+    // 5️⃣ Generate username
+    const usernameId = await generateUsername(schoolId);
+    setUsername(usernameId);
+
+    const email = `${usernameId}@student.school.com`;
+
+    // 6️⃣ Create auth account
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (authError) throw authError;
+
+    const authUserId = authData.user.id;
+
+    // 7️⃣ Restore admin session
+    await supabase.auth.setSession({
+      access_token: adminSession.access_token,
+      refresh_token: adminSession.refresh_token,
+    });
+
+    // 8️⃣ Insert candidate
+    const { error: candidateError } = await callSupabase((sb) =>
+      sb.from("candidates").insert({
+        user_id: authUserId,
+        username: usernameId,
+        full_name: fullName,
+        school_id: schoolId,
+        class_id: className,
+        gender,
+        date_of_birth: dateOfBirth,
+        session,
+        password,
+        photo_url: photoUrl,
+      })
+    );
+
+    if (candidateError) throw candidateError;
+
+    // 9️⃣ Insert profile
+    const { error: profileError } = await callSupabase((sb) =>
+      sb.from("profile").upsert({
+        id: authUserId,
+        full_name: fullName,
+        role: ROLES.CANDIDATE,
+        school_id: schoolId,
+      })
+    );
+
+    if (profileError) throw profileError;
+
+    setMessage("Candidate created successfully");
+  } catch (err) {
+    console.error(err);
+    setErrorMessage(err.message);
+  } finally {
+    setIsCreating(false);
+  }
+};
+
+  /**
+   * Handle passport upload preview
+   */
   const handlePassportChange = (file) => {
     setPassport(file);
 
@@ -119,29 +140,29 @@ const useCreateCandidate = () => {
     }
   };
 
+  /**
+   * Fetch school classes
+   */
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        // get logged in user
         const { data: sessionData } = await callSupabase((sb) =>
           sb.auth.getUser()
         );
 
         const userId = sessionData?.user?.id;
 
-        // get admin profile
         const { data: adminProfile } = await callSupabase((sb) =>
           sb.from("profile").select("school_id").eq("id", userId).single()
         );
 
         const schoolId = adminProfile.school_id;
 
-        // fetch classes for the school
         const { data: classes } = await callSupabase((sb) =>
           sb.from("classes").select("name, id").eq("school_id", schoolId)
         );
 
-        setClasses(classes);
+        setClasses(classes || []);
       } catch (err) {
         console.error("Error fetching classes:", err);
       }

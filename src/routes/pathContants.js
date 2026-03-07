@@ -3,6 +3,7 @@ export const pathConstants = {
   LOGIN: "/login",
   SIGNUP: "/signup",
   RESET_PASSWORD: "/forget-password",
+  STUDENT_LOGIN: "/student-login",
   LOGIN_OTP_VERIFICATION: "/login-otp-verification",
   AUTH_CALLBACK : "/auth/callback",
   RESET_PASSWORD_CALLBACK: "/reset-password/callback",

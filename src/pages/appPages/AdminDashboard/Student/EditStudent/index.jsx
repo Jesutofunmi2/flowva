@@ -35,8 +35,8 @@ const EditStudent = () => {
   } = Validation(username, fullName, className, gender, dateOfBirth, session);
   return (
     <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Edit Student"
-      description="View all dashboard activities and statistics on Redeemer Teap International School,."
+      title="Test Engine / Assessment Platform Solution, | Edit Student"
+      description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
       <div
         className="login-page"

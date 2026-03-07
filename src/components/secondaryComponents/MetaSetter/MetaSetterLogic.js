@@ -8,8 +8,8 @@ const MetaSetterLogic = ({ title, description }) => {
   useEffect(() => {
     if (typeof setMetaDetails !== "function") return;
     setMetaDetails({
-      title: title ?? "Redeemer Teap International School, CLUBHub",
-      description: description ?? "Redeemer Teap International School, CLUBHub - Your Rewards Journey",
+      title: title ?? "Test Engine / Assessment Platform Solution, CLUBHub",
+      description: description ?? "Test Engine / Assessment Platform Solution, CLUBHub - Your Rewards Journey",
     });
   }, [setMetaDetails, title, description]);
 

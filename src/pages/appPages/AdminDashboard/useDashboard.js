@@ -5,7 +5,7 @@ import { callSupabase } from "../../../helpers/supabaseWrapper";
 import useDailyPoints from "../../../hooks/useDailyPoints";
 
 const useDashboard = () => {
-  const { loading: authLoading, displayName, user } = useAuthUser();
+  const { loading: authLoading, displayName, user, profileImageUrl, candidate,} = useAuthUser();
   const { total } = useDailyPoints();
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
@@ -50,6 +50,8 @@ const useDashboard = () => {
     error,
     refresh: fetchCards,
     total,
+    profileImageUrl,
+    candidate
   };
 };
 

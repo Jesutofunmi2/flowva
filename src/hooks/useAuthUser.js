@@ -6,132 +6,144 @@ import { supabase } from "../hooks/supabaseClient";
 export default function useAuthUser() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const [candidate, setCandidate] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [link, setLink] = useState(null);
+  const [fullName, setFullName] = useState(null);
 
   const navigate = useNavigate();
 
   /**
-   * 🔄 Fetch current session user
-   */
-  const refreshUser = useCallback(async () => {
-    setLoading(true);
-    try {
-      const { data } = await callSupabase((sb) => sb.auth.getUser());
-      const currentUser = data?.user ?? null;
-
-      setUser(currentUser);
-
-      if (currentUser) {
-        await fetchUserRole(currentUser.id);
-      } else {
-        setRole(null);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  /**
-   * 👤 Fetch role from profiles table
+   * 👤 Fetch role from profile table
    */
   const fetchUserRole = async (userId) => {
+  try {
+    const { data } = await callSupabase((sb) =>
+      sb
+        .from("profile")
+        .select("role, full_name")
+        .eq("id", userId)
+        .single()
+    );
+
+    const userRole = data?.role ?? null;
+
+    setRole(userRole);
+    setFullName(data?.full_name ?? null);
+
+    return userRole;
+  } catch {
+    setRole(null);
+    setFullName(null);
+    return null;
+  }
+};
+  /**
+   * 🎓 Fetch candidate info
+   */
+  const fetchCandidate = async (userId) => {
+    console.log("Fetching candidate info for user ID:", userId); // Debug log
     try {
       const { data } = await callSupabase((sb) =>
         sb
-          .from("profile")
-          .select("role")
-          .eq("id", userId)
+          .from("candidates")
+          .select(`
+            full_name,
+            session,
+            photo_url,
+            classes (
+              name
+            )
+          `)
+          .eq("user_id", userId)
           .single()
       );
 
-      setRole(data?.role ?? null);
+      setCandidate(data ?? null);
     } catch {
-      setRole(null);
+      setCandidate(null);
     }
   };
 
   /**
-   * 🔐 Listen to auth state changes
+   * 🔄 Refresh current user
    */
-  useEffect(() => {
-    let mounted = true;
+  const refreshUser = useCallback(async () => {
+  setLoading(true);
 
-    refreshUser();
+  try {
+    const { data } = await callSupabase((sb) => sb.auth.getUser());
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      if (!mounted) return;
+    const currentUser = data?.user ?? null;
 
-      const sessionUser = session?.user ?? null;
-      setUser(sessionUser);
+    setUser(currentUser);
 
-      if (sessionUser) {
-        await fetchUserRole(sessionUser.id);
+    if (currentUser) {
+      const userRole = await fetchUserRole(currentUser?.id);
+        if (userRole === "candidate") {
+        await fetchCandidate(currentUser?.id);
       } else {
-        setRole(null);
+        setCandidate(null);
       }
-
-      setLoading(false);
-    });
-
-    return () => {
-      mounted = false;
-      subscription?.unsubscribe();
-    };
-  }, [refreshUser]);
-
+    } else {
+      setRole(null);
+      setCandidate(null);
+    }
+  } finally {
+    setLoading(false);
+  }
+}, []);
   /**
-   * 🔗 Generate referral link
+   * 🔐 Listen to auth changes
    */
-  useEffect(() => {
-    if (!user?.id) {
-      setLink(null);
-      return;
+ useEffect(() => {
+  let mounted = true;
+
+  refreshUser();
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    if (!mounted) return;
+
+    const sessionUser = session?.user ?? null;
+
+    setUser(sessionUser);
+
+    if (sessionUser) {
+      const userRole = await fetchUserRole(sessionUser?.id);
+
+      if (userRole === "candidate") {
+        await fetchCandidate(sessionUser?.id);
+      } else {
+        setCandidate(null);
+      }
+    } else {
+      setRole(null);
+      setCandidate(null);
     }
 
-    let mounted = true;
+    setLoading(false);
+  });
 
-    (async () => {
-      try {
-        const { data } = await callSupabase((sb) =>
-          sb
-            .from("profiles")
-            .select("referral_code")
-            .eq("id", user.id)
-            .maybeSingle()
-        );
-
-        if (!mounted) return;
-
-        setLink(
-          `${window.location.origin}/signup?ref=${data?.referral_code ?? ""}`
-        );
-      } catch {
-        if (mounted) setLink(null);
-      }
-    })();
-
-    return () => {
-      mounted = false;
-    };
-  }, [user?.id]);
-
+  return () => {
+    mounted = false;
+    subscription?.unsubscribe();
+  };
+}, [refreshUser]);
   /**
    * 🏷 Display helpers
    */
   const displayName =
+    candidate?.full_name ?? fullName ??
     user?.user_metadata?.full_name ??
-    user?.user_metadata?.name ??
     user?.email?.split("@")[0] ??
     "";
 
   const displayEmail = user?.email ?? "";
 
   const profileImageUrl =
+    candidate?.photo_url ??
     user?.user_metadata?.avatar_url ??
-    user?.user_metadata?.picture ??
     null;
 
   /**
@@ -139,15 +151,20 @@ export default function useAuthUser() {
    */
   const signOut = async () => {
     await callSupabase((sb) => sb.auth.signOut());
+
     localStorage.removeItem("refreshToken");
+
     setUser(null);
     setRole(null);
+    setCandidate(null);
+
     navigate("/login");
   };
 
   return {
     user,
     role,
+    candidate,
     loading,
     displayName,
     displayEmail,
@@ -155,6 +172,5 @@ export default function useAuthUser() {
     refreshUser,
     signOut,
     setLoading,
-    link,
   };
 }

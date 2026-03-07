@@ -24,8 +24,8 @@ const CreateSchool = () => {
   const { register, handleSubmit, control, trigger } = Validation(address, name, email, phone);
   return (
    <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Create Candidate"
-      description="View all dashboard activities and statistics on Redeemer Teap International School,."
+      title="Test Engine / Assessment Platform Solution, | Create Candidate"
+      description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
       <LoaderHelper
         isLoading={false}
@@ -53,7 +53,7 @@ const CreateSchool = () => {
                   render={({ field: { onChange } }) => (
                     <PrimaryComponents.InputField
                       label="Name"
-                      placeholder="Redeemer Teap International School"
+                      placeholder="Test Engine / Assessment Platform Solution"
                       name="name"
                       className="white"
                       onChange={({ target: { value } }) => {

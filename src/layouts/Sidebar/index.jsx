@@ -22,7 +22,7 @@ const Sidebar = ({ open = false, onClose = () => {} }) => {
         aria-label="Main"
       >
         <div className="sidebar__top">
-          <img src={Images.logo} alt="Redeemer Teap International School,Hub" className="sidebar__logo" />
+          <img src={Images.logo} alt="Test Engine / Assessment Platform Solution,Hub" className="sidebar__logo" />
         </div>
 
         <nav className="sidebar__nav">

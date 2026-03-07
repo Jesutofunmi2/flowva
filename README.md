@@ -1,4 +1,4 @@
-# Redeemer Teap International School,Hub — Local setup & Supabase Auth
+# Test Engine / Assessment Platform Solution,Hub — Local setup & Supabase Auth
 
 This document covers local setup, Supabase configuration (Auth / SMTP / OAuth), common troubleshooting, and assumptions/trade‑offs for the project.
 

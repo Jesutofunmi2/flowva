@@ -23,14 +23,14 @@ const useReferralShareCard = ({ link, onShareSuccess }) => {
     setLoadingShare(true);
     try {
       if (navigator.share && channel === "native") {
-        await navigator.share({ title: "Join me on Redeemer Teap International School, CLUBHub", text: "Sign up and earn points:", url: link });
+        await navigator.share({ title: "Join me on Test Engine / Assessment Platform Solution, CLUBHub", text: "Sign up and earn points:", url: link });
         onShareSuccess?.("native");
       } else {
         let url;
         if (channel === "facebook") {
           url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
         } else if (channel === "twitter") {
-          url = `https://twitter.com/intent/tweet?text=${encodeURIComponent("Join me on Redeemer Teap International School, CLUBHub")}&url=${encodeURIComponent(link)}`;
+          url = `https://twitter.com/intent/tweet?text=${encodeURIComponent("Join me on Test Engine / Assessment Platform Solution, CLUBHub")}&url=${encodeURIComponent(link)}`;
         } else if (channel === "linkedin") {
           url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(link)}`;
         } else if (channel === "whatsapp") {

@@ -8,7 +8,7 @@ import LoginFormValidation from "./LoginValidation";
 import { Controller } from "react-hook-form";
 import Images from "../../../assets/images";
 
-const Login = () => {
+const StudentLogin = () => {
   const {
     email,
     password,
@@ -17,7 +17,6 @@ const Login = () => {
     setEmail,
     isLogging,
     errorMessage,
-    signInWithGoogle,
   } = LoginLogic();
   const {
     register,
@@ -37,7 +36,7 @@ const Login = () => {
                 Test Engine / Assessment Platform Solution,
               </h4>
               <p className="small-text-size">
-                Log in to your account to access your dashboard.
+                Log in to your Exam.
               </p>
             </div>
             <form onSubmit={handleSubmit(login)} className="login__form">
@@ -49,7 +48,7 @@ const Login = () => {
                   defaultValue={email}
                   render={({ field: { onChange } }) => (
                     <PrimaryComponents.InputField
-                      label="Email or Username"
+                      label="Username"
                       placeholder="user@example.com"
                       name="email"
                       className="white"
@@ -90,15 +89,6 @@ const Login = () => {
                   )}
                 />
               </div>
-              <div className="text-end">
-                <Link
-                  className="purple--text smallest-text-size font-weight-medium"
-                  to="/forget-password"
-                  data-testid="forgot-password-btn"
-                >
-                  Forgot password?
-                </Link>
-              </div>
               <PrimaryComponents.Button
                 classNames="btn btn--primary cover"
                 type="submit"
@@ -109,41 +99,6 @@ const Login = () => {
                 Sign In
               </PrimaryComponents.Button>
             </form>
-            <div className="login-page__or-separator">
-              <span
-                className="smallest-text-size font-weight-normal"
-                style={{ color: "#A78BFA" }}
-              >
-                or
-              </span>
-            </div>
-            <PrimaryComponents.Button
-              classNames="btn btn--outline cover"
-              type="button"
-              loadingText="Connecting..."
-              onClick={signInWithGoogle}
-              isDisabled={isLogging}
-              isLoading={isLogging}
-            >
-              <div className="google-signin">
-                <img
-                  src={Images.GoogleIcon}
-                  alt="Google Icon"
-                  className="google-signin__icon"
-                />
-                <span>Sign in with Google</span>
-              </div>
-            </PrimaryComponents.Button>
-
-            <p className="signup-link smallest-text-size">
-              Don't have an account?{" "}
-              <Link
-                to="/signup"
-                className="purple--text smallest-text-size font-weight-semibold"
-              >
-                Sign Up
-              </Link>
-            </p>
           </div>
         </div>
       </LoginLayout>
@@ -151,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default StudentLogin;

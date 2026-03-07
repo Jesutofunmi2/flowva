@@ -13,8 +13,8 @@ const AllSubjects = () => {
     instance;
   return (
     <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | All Subjects"
-      description="View all dashboard activities and statistics on Redeemer Teap International School,."
+      title="Test Engine / Assessment Platform Solution, | All Subjects"
+      description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
         <div style={{ padding: "30px 0", width: "100%" }}>
           <div className="login-page__container">

@@ -11,8 +11,8 @@ const SubjectManagement = () => {
   const { subjects } = useAllSubject();
   return (
      <SecondaryComponents.MetaSetter
-      title="Redeemer Teap International School, | Subject Management"
-      description="View all dashboard activities and statistics on Redeemer Teap International School,."
+      title="Test Engine / Assessment Platform Solution, | Subject Management"
+      description="View all dashboard activities and statistics on Test Engine / Assessment Platform Solution,."
     >
       <LoaderHelper
         isLoading={false}
