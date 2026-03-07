@@ -4,9 +4,11 @@ import globalStyles from "../../../../assets/styles/base/globalPage.module.scss"
 import SecondaryComponents from "../../../../components/secondaryComponents";
 import { pathConstants } from "../../../../routes/pathContants";
 import ICONS from "../../../../assets/svgIcons";
+import useAllStudents from "./AllStudent/useAllStudents";
 
 
  const CandidateConfig = () => {
+  const { students } = useAllStudents();
   return (
     <SecondaryComponents.MetaSetter
       title="Redeemer Teap International School, | Candidate"
@@ -29,21 +31,20 @@ import ICONS from "../../../../assets/svgIcons";
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Add Candidate"}
-                count={0}
-                description={"Add Candidate"}
+                title={"Add Student"}
+                description={"Create Student for the exam"}
                 ctaText="View"
               />
 
               <Card
                 key={2}
-                to={pathConstants.CREATE_CANDIDATE}
+                to={pathConstants.ALL_CANDIDATES}
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"All Candidates"}
-                count={0}
-                description={"All Candidates"}
+                title={"All Students"}
+                count={students?.length || 0}
+                description={"View All Student"}
                 ctaText="View"
               />
 
@@ -53,23 +54,12 @@ import ICONS from "../../../../assets/svgIcons";
                 Icon={ICONS.DiscoverIcon}
                 iconBg="#E9D4FF"
                 iconColor="#9013FE"
-                title={"Candidate Performance"}
-                count={0}
-                description={"Candidate Performance"}
+                title={"Assign Students to Class"}
+                description={"Assign Students to Class"}
                 ctaText="View"
               />
+              
 
-              <Card
-                key={4}
-                to={pathConstants.CREATE_CANDIDATE}
-                Icon={ICONS.DiscoverIcon}
-                iconBg="#E9D4FF"
-                iconColor="#9013FE"
-                title={"Candidate Profiles"}
-                count={0}
-                description={"Candidate Profiles"}
-                ctaText="View"
-              />
         
         
         </div>

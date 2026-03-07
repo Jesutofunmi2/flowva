@@ -131,6 +131,22 @@ const useGetRoutes = () => {
           )
         },
         {
+          path: pathConstants.UPDATE_CANDIDATE({candidateId: ":candidateId"}),
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.EditStudent />
+            </RoleGuard>
+          ) 
+        },
+        {
+          path: pathConstants.ALL_CANDIDATES,
+          element: (
+            <RoleGuard allowedRoles={["admin"]}>
+               <AppPages.AllStudents />
+            </RoleGuard>
+          )
+        },
+        {
           path: pathConstants.CREATE_SUBJECT,
           element: (
             <RoleGuard allowedRoles={["admin"]}>

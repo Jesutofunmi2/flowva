@@ -1,30 +1,30 @@
 import Validation from "./Validation";
 import SecondaryComponents from "../../../../../components/secondaryComponents";
-import useCreateCandidate from "./useCreateCandidate";
+import useCreateCandidate from "./useCreateStudent";
 import { Controller } from "react-hook-form";
 import PrimaryComponents from "../../../../../components/primaryComponents";
 
 const CreateCandidate = () => {
   const {
     username,
-    setUsername,
-    setFullName,
     message,
     fullName,
     errorMessage,
     isCreating,
-    createUser,
-    className,
-    setClassName,
-    gender,
-    setGender,
     dateOfBirth,
-    setDateOfBirth,
+    gender,
     session,
-    setSession,
     classes,
-    handlePassportChange,
+    className,
     passportPreview,
+    setClassName,
+    setGender,
+    createUser,
+    setDateOfBirth,
+    setSession,
+    setUsername,
+    setFullName,
+    handlePassportChange,
   } = useCreateCandidate();
   const {
     register,
